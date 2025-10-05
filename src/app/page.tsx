@@ -47,18 +47,18 @@ export default function BackgroundBoxesDemo() {
   const mainContentOpacity = scrollY > 100 ? 0 : 1;
   const mainContentTransform = scrollY > 100 ? 'translateY(-50px)' : 'translateY(0)';
 
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+
 
   return (
-    <div className="relative bg-slate-900">
-      {/* Loading Screen */}
-      {isLoading && (
-        <LoadingScreen />
-      )}
+    <div className="relative bg-[#111111]">
 
+      {/* Loading Screen */}
+      <div className={`transition-opacity duration-900 ease-in-out ${isLoading ? 'opacity-100' : 'opacity-0'}`}>
+        {isLoading && <LoadingScreen />}
+      </div>
+
+      <div className={`relative bg-slate-900 transition-all duration-500 ease-in ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      
       <NavbarDemo />
       
       {/* Aurora as background */}
@@ -132,7 +132,7 @@ export default function BackgroundBoxesDemo() {
             width={1400}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
-          />
+            />
         </ContainerScroll>
         
       </div>
@@ -180,6 +180,7 @@ export default function BackgroundBoxesDemo() {
         
         <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
       </footer>
+            </div>
     </div>
   );
 }

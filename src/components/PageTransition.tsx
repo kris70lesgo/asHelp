@@ -46,8 +46,8 @@ export const LoadingScreen: React.FC = () => {
           }
         `}
       </style>
-      <div className="fixed top-0 left-0 black-grid-background z-[9999] flex h-screen min-h-screen w-full items-center justify-center font-sans">        {/* you can change background here*/ }
-        <div className="rounded-2xl bg-black pb-12 px-12 sm:scale-100 scale-70">
+      <div className="fixed top-0 left-0 black-grid-background z-[9999] flex h-screen min-h-screen w-full items-center justify-center font-sans">
+        <div className="rounded-2xl pb-12 px-12 sm:scale-100 scale-70">
           <div className="flex h-10 justify-center  items-center rounded-lg p-1 font-medium text-zinc-400 text-6xl ">
             <p className="translate-y-5">loading</p>
             <div className="words-fade relative h-full overflow-hidden translate-y-4 py-8">
