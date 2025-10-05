@@ -32,6 +32,7 @@ export const LoadingScreen: React.FC = () => {
                     className="bg-transparent rounded-full p-8 text-cyan-800/75 text-5xl font-extrabold tracking-wider"
                 >
                     <ContainerTextFlip
+                                  interval={1000}
                                   words={["Sharpening pencils", "Making a todo", "Fetching Assignment sheets", "Almost there"]}
                                   className="text-xl xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap backdrop-blur-xl"
                                 />
