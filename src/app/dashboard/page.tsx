@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, User, Menu, X, Star, Clock, Filter } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { NavbarDemo } from "@/components/nav";
-import { LoadingScreen } from '@/components/PageTransition';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 
 const AcademicHub = () => {
