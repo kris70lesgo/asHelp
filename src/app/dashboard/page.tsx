@@ -86,7 +86,18 @@ const AcademicHub = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-y-auto">
       {/* Custom Loading Screen */}
-      {isLoading && <LoadingScreen />}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
+          <div className="flex flex-col items-center gap-4">
+            <DotLottieReact
+              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
+              loop
+              autoplay
+            />
+            <p className="text-white text-lg font-medium">Loading...</p>
+          </div>
+        </div>
+      )}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         <NavbarDemo />
 
