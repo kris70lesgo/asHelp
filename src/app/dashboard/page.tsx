@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart, User, Menu, X, Star, Clock, Filter } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { NavbarDemo } from "@/components/nav";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { LoadingScreen } from '@/components/PageTransition';
 
 
 const AcademicHub = () => {
@@ -85,19 +85,8 @@ const AcademicHub = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-y-auto">
-      {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
-          <div className="flex flex-col items-center gap-4">
-            <DotLottieReact
-              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
-              loop
-              autoplay
-            />
-            <p className="text-white text-lg font-medium">Loading...</p>
-          </div>
-        </div>
-      )}
+      {/* Custom Loading Screen */}
+      {isLoading && <LoadingScreen />}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         <NavbarDemo />
 
@@ -229,7 +218,7 @@ const AcademicHub = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
                   {stat.number}
                 </div>
                 <div className="text-slate-400 font-medium">{stat.label}</div>
