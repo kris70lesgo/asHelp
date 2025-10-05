@@ -15,7 +15,7 @@ export const LoadingScreen: React.FC = () => {
     if (!mounted) return null;
     return (
         <>
-              <div className="fixed inset-0 z-0">
+              <div className="absolute inset-0 z-0">
                     <Aurora
                       colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
                       blend={0.5}
@@ -23,7 +23,7 @@ export const LoadingScreen: React.FC = () => {
                       speed={0.5}
                     />
                   </div>
-            <div className="relative flex h-screen justify-center items-center gap-6">
+            <div className="flex h-screen justify-center items-center gap-6">
 
                 <motion.div
                     initial={{ opacity: 0, y: 250 }}
