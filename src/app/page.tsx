@@ -1,27 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Boxes } from "@/components/ui/background-boxes";
-import { cn } from "@/lib/utils";
-import Button2 from '@/components/button2';
-import { User, FileText, UploadCloud, CreditCard, Github } from 'lucide-react';
-import Upload from '@/components/upload';
+import { FileText, UploadCloud, CreditCard } from 'lucide-react';
 import Aurora from '@/components/Backgrounds/Aurora';
-import { useRef } from 'react';
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import TailwindConnectButton from "@/components/button";
-import { useRouter } from "next/navigation";
 import TestimonialMarquee from "@/components/mwrap"
 import { NavbarDemo } from "@/components/nav";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-
+import Image from "next/image";
 
 export default function BackgroundBoxesDemo() {
   const [scrollY, setScrollY] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -56,210 +47,189 @@ export default function BackgroundBoxesDemo() {
       {/* Loading Screen */}
       {isLoading ? (
         <div className="fixed inset-0 z-50 flex flex-col bg-slate-900 overflow-y-auto skeleton-animation">
-        <style jsx>{`
-          @keyframes pulseGradient {
-            0% {
-              background-color: #374151; /* gray-700 */
-            }
-            50% {
-              background-color: #475569; /* slate-600 */
-            }
-            100% {
-              background-color: #374151; /* gray-700 */
-            }
-          }
-      
-          .skeleton-animation div[class*="bg-gray-700"],
-          .skeleton-animation div[class*="bg-gray-800"] {
-            animation: pulseGradient 2s ease-in-out infinite;
-          }
-        `}</style>
-      
         {/* Navbar Skeleton */}
-        <div className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-800">
-          <div className="h-6 w-32 bg-gray-700 rounded"></div>
-          <div className="flex gap-4">
-            <div className="h-5 w-16 bg-gray-700 rounded"></div>
-            <div className="h-5 w-16 bg-gray-700 rounded"></div>
-            <div className="h-5 w-16 bg-gray-700 rounded"></div>
+          <div className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-800">
+            <div className="h-6 w-32 bg-gray-700 rounded"></div>
+            <div className="flex gap-4">
+              <div className="h-5 w-16 bg-gray-700 rounded"></div>
+              <div className="h-5 w-16 bg-gray-700 rounded"></div>
+              <div className="h-5 w-16 bg-gray-700 rounded"></div>
+            </div>
+            <div className="h-8 w-20 bg-gray-700 rounded-full"></div>
           </div>
-          <div className="h-8 w-20 bg-gray-700 rounded-full"></div>
-        </div>
-      
-        {/* Hero Section Skeleton */}
-        <div className="flex flex-col items-center justify-center text-center py-24 px-4 gap-6">
-          <div className="h-8 w-56 bg-gray-700 rounded-full"></div>
-          <div className="flex flex-wrap justify-center gap-2">
-            <div className="h-12 w-48 bg-gray-700 rounded"></div>
-            <div className="h-12 w-40 bg-gray-700 rounded"></div>
+        
+          {/* Hero Section Skeleton */}
+          <div className="flex flex-col items-center justify-center text-center py-24 px-4 gap-6">
+            <div className="h-8 w-56 bg-gray-700 rounded-full"></div>
+            <div className="flex flex-wrap justify-center gap-2">
+              <div className="h-12 w-48 bg-gray-700 rounded"></div>
+              <div className="h-12 w-40 bg-gray-700 rounded"></div>
+            </div>
+            <div className="h-5 w-80 bg-gray-700 rounded mt-2"></div>
+            <div className="h-5 w-64 bg-gray-700 rounded"></div>
+            <div className="h-10 w-40 bg-gray-700 rounded-full mt-4"></div>
           </div>
-          <div className="h-5 w-80 bg-gray-700 rounded mt-2"></div>
-          <div className="h-5 w-64 bg-gray-700 rounded"></div>
-          <div className="h-10 w-40 bg-gray-700 rounded-full mt-4"></div>
-        </div>
-      
-        {/* Scroll Section Skeleton */}
-        <div className="w-full flex items-center justify-center py-16">
-          <div className="h-[400px] w-11/12 bg-gray-800 rounded-3xl"></div>
-        </div>
-      
-        {/* 3 Steps Section Skeleton */}
-        <div className="w-full flex flex-col items-center py-20 gap-8">
-          <div className="h-5 w-32 bg-gray-700 rounded"></div>
-          <div className="h-10 w-64 bg-gray-700 rounded"></div>
-      
-          <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 px-4 max-w-5xl">
-            {[1, 2, 3].map((_, i) => (
-              <div key={i} className="flex items-start gap-4 w-full md:w-1/3">
-                <div className="w-16 h-16 bg-gray-700 rounded-full shrink-0"></div>
-                <div className="flex flex-col gap-2">
-                  <div className="h-5 w-40 bg-gray-700 rounded"></div>
-                  <div className="h-4 w-56 bg-gray-700 rounded"></div>
-                  <div className="h-4 w-48 bg-gray-700 rounded"></div>
+        
+          {/* Scroll Section Skeleton */}
+          <div className="w-full flex items-center justify-center py-16">
+            <div className="h-[400px] w-11/12 bg-gray-800 rounded-3xl"></div>
+          </div>
+        
+          {/* 3 Steps Section Skeleton */}
+          <div className="w-full flex flex-col items-center py-20 gap-8">
+            <div className="h-5 w-32 bg-gray-700 rounded"></div>
+            <div className="h-10 w-64 bg-gray-700 rounded"></div>
+        
+            <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 px-4 max-w-5xl">
+              {[1, 2, 3].map((_, i) => (
+                <div key={i} className="flex items-start gap-4 w-full md:w-1/3">
+                  <div className="w-16 h-16 bg-gray-700 rounded-full shrink-0"></div>
+                  <div className="flex flex-col gap-2">
+                    <div className="h-5 w-40 bg-gray-700 rounded"></div>
+                    <div className="h-4 w-56 bg-gray-700 rounded"></div>
+                    <div className="h-4 w-48 bg-gray-700 rounded"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+        
+          {/* Testimonials Skeleton */}
+          <div className="w-full flex items-center justify-center py-16">
+            <div className="h-48 w-10/12 bg-gray-800 rounded-2xl"></div>
+          </div>
+        
+          {/* Footer Skeleton */}
+          <div className="w-full flex flex-col items-center justify-center py-8 border-t border-gray-800">
+            <div className="h-4 w-40 bg-gray-700 rounded mb-2"></div>
+            <div className="h-4 w-64 bg-gray-700 rounded"></div>
           </div>
         </div>
-      
-        {/* Testimonials Skeleton */}
-        <div className="w-full flex items-center justify-center py-16">
-          <div className="h-48 w-10/12 bg-gray-800 rounded-2xl"></div>
-        </div>
-      
-        {/* Footer Skeleton */}
-        <div className="w-full flex flex-col items-center justify-center py-8 border-t border-gray-800">
-          <div className="h-4 w-40 bg-gray-700 rounded mb-2"></div>
-          <div className="h-4 w-64 bg-gray-700 rounded"></div>
-        </div>
-      </div>
-      
       ):(
         <>
-<NavbarDemo />
+          <NavbarDemo />
       
-      {/* Aurora as background */}
-      <div className="fixed inset-0 z-0">
-        <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
-        />
-      </div>
-      
-      {/* Main content centered - positioned fixed to stay in center */}
-      <div 
-        className={`fixed inset-0 z-20 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{
-          opacity: isLoading ? 0 : mainContentOpacity,
-          transform: mainContentTransform
-        }}
-      >
-        {/* Hero Section Layout Fix */}
-        <div className="flex flex-col items-center justify-center gap-4 px-4 max-w-3xl mx-auto text-center">
-          {/* Button Row */}
-          <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 text-black font-normal text-sm shadow-sm border border-gray-200 hover:bg-gray-200 transition-all mb-2">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="text-black"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 4.636" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Discover Genuine Solutions
-          </button>
-          {/* Heading + Flip Row */}
-          <div className="flex flex-row flex-wrap items-center justify-center gap-1 w-full">
-            <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-semibold whitespace-nowrap">
-              Want help in
-            </h1>
-            <ContainerTextFlip
-              words={["Projects", "assignments", "Termwork", "PPT"]}
-              className="text-lg xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap"
+          {/* Aurora as background */}
+          <div className="fixed inset-0 z-0">
+            <Aurora
+              colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+              blend={0.5}
+              amplitude={1.0}
+              speed={0.5}
             />
           </div>
-          {/* Description Row */}
-          <div className="mt-2 text-gray-400 text-xs sm:text-lg max-w-xl">
-            Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.
+          
+          {/* Main content centered - positioned fixed to stay in center */}
+          <div 
+            className={`fixed inset-0 z-20 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
+              isLoading ? 'opacity-0' : 'opacity-100'
+            }`}
+            style={{
+              opacity: isLoading ? 0 : mainContentOpacity,
+              transform: mainContentTransform
+            }}
+          >
+            {/* Hero Section Layout Fix */}
+            <div className="flex flex-col items-center justify-center gap-4 px-4 max-w-3xl mx-auto text-center">
+              {/* Button Row */}
+              <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 text-black font-normal text-sm shadow-sm border border-gray-200 hover:bg-gray-200 transition-all mb-2">
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="text-black"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 4.636" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Discover Genuine Solutions
+              </button>
+              {/* Heading + Flip Row */}
+              <div className="flex flex-row flex-wrap items-center justify-center gap-1 w-full">
+                <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-semibold whitespace-nowrap">
+                  Want help in
+                </h1>
+                <ContainerTextFlip
+                  words={["Projects", "assignments", "Termwork", "PPT"]}
+                  className="text-lg xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap"
+                />
+              </div>
+              {/* Description Row */}
+              <div className="mt-2 text-gray-400 text-xs sm:text-lg max-w-xl">
+                Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.
+              </div>
+            </div>
+            <div className="flex flex-col items-center mt-6 sm:mt-8 w-full px-4">
+              <TailwindConnectButton />
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col items-center mt-6 sm:mt-8 w-full px-4">
-          <TailwindConnectButton />
-        </div>
-      </div>
-      
-      {/* Spacer div to replace the br tags */}
-      <div className="h-screen"></div>
-      
-      {/* ContainerScroll in normal document flow for scrolling */}
-      <div className={`relative z-10 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <ContainerScroll
-          titleComponent={
-            <>
-              <h2 className="text-4xl font-semibold text-black dark:text-white">
-                
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                  
+          
+          {/* Spacer div to replace the br tags */}
+          <div className="h-screen"></div>
+          
+          {/* ContainerScroll in normal document flow for scrolling */}
+          <div className={`relative z-10 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+            <ContainerScroll
+              titleComponent={
+                <>
+                  <h2 className="text-4xl font-semibold text-black dark:text-white">
+                    
+                    <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                      
+                    </span>
+                  </h2>
+                </>
+              }
+            >
+              <Image
+                src={`/linear.webp`}
+                alt="hero"
+                height={720}
+                width={1400}
+                className="mx-auto rounded-2xl object-cover h-full object-left-top"
+                draggable={false}
+              />
+            </ContainerScroll>
+            
+          </div>
+          {/* 3 Steps Section */}
+          <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
+            <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">HOW IT WORKS</div>
+            <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
+            <div className="flex flex-col md:flex-row gap-10 md:gap-20 max-w-5xl mx-auto w-full justify-center items-start">
+              {/* Step 1 */}
+              <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+                <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+                  <UploadCloud size={36} />
                 </span>
-              </h2>
-            </>
-          }
-        >
-          <img
-            src={`/linear.webp`}
-            alt="hero"
-            height={720}
-            width={1400}
-            className="mx-auto rounded-2xl object-cover h-full object-left-top"
-            draggable={false}
-          />
-        </ContainerScroll>
-        
-      </div>
-      {/* 3 Steps Section */}
-      <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
-        <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">HOW IT WORKS</div>
-        <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
-        <div className="flex flex-col md:flex-row gap-10 md:gap-20 max-w-5xl mx-auto w-full justify-center items-start">
-          {/* Step 1 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <UploadCloud size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">1. Upload Your Data</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
+                <div>
+                  <h3 className="text-lg font-bold text-white dark:text-white mb-1">1. Upload Your Data</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
+                </div>
+              </div>
+              {/* Step 2 */}
+              <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+                <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+                  <FileText size={36} />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-white dark:text-white mb-1">2. Click Start</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
+                </div>
+              </div>
+              {/* Step 3 */}
+              <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+                <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+                  <CreditCard size={36} />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-white dark:text-white mb-1">3. Get Actionable Insights</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
+                </div>
+              </div>
             </div>
-          </div>
-          {/* Step 2 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <FileText size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">2. Click Start</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
-            </div>
-          </div>
-          {/* Step 3 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <CreditCard size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">3. Get Actionable Insights</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End 3 Steps Section */}
-      <TestimonialMarquee/>
-      {/* Made by and Copyright */}
-      <footer className="w-full flex flex-col items-center justify-center py-6 text-center text-xs text-gray-400">
-        
-        <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
-      </footer>
+          </section>
+          {/* End 3 Steps Section */}
+          <TestimonialMarquee/>
+          {/* Made by and Copyright */}
+          <footer className="w-full flex flex-col items-center justify-center py-6 text-center text-xs text-gray-400">
+            
+            <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
+          </footer>
         </>
-      ) 
-      }
+      )}
     </div>
   );
 }
