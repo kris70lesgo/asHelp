@@ -54,20 +54,89 @@ export default function BackgroundBoxesDemo() {
   return (
     <div className="relative bg-slate-900">
       {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
-          <div className="flex flex-col items-center gap-4">
-            <DotLottieReact
-              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
-              loop
-              autoplay
-            />
-            <p className="text-white text-lg font-medium">Loading...</p>
+      {isLoading ? (
+        <div className="fixed inset-0 z-50 flex flex-col bg-slate-900 overflow-y-auto skeleton-animation">
+        <style jsx>{`
+          @keyframes pulseGradient {
+            0% {
+              background-color: #374151; /* gray-700 */
+            }
+            50% {
+              background-color: #475569; /* slate-600 */
+            }
+            100% {
+              background-color: #374151; /* gray-700 */
+            }
+          }
+      
+          .skeleton-animation div[class*="bg-gray-700"],
+          .skeleton-animation div[class*="bg-gray-800"] {
+            animation: pulseGradient 2s ease-in-out infinite;
+          }
+        `}</style>
+      
+        {/* Navbar Skeleton */}
+        <div className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-800">
+          <div className="h-6 w-32 bg-gray-700 rounded"></div>
+          <div className="flex gap-4">
+            <div className="h-5 w-16 bg-gray-700 rounded"></div>
+            <div className="h-5 w-16 bg-gray-700 rounded"></div>
+            <div className="h-5 w-16 bg-gray-700 rounded"></div>
+          </div>
+          <div className="h-8 w-20 bg-gray-700 rounded-full"></div>
+        </div>
+      
+        {/* Hero Section Skeleton */}
+        <div className="flex flex-col items-center justify-center text-center py-24 px-4 gap-6">
+          <div className="h-8 w-56 bg-gray-700 rounded-full"></div>
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="h-12 w-48 bg-gray-700 rounded"></div>
+            <div className="h-12 w-40 bg-gray-700 rounded"></div>
+          </div>
+          <div className="h-5 w-80 bg-gray-700 rounded mt-2"></div>
+          <div className="h-5 w-64 bg-gray-700 rounded"></div>
+          <div className="h-10 w-40 bg-gray-700 rounded-full mt-4"></div>
+        </div>
+      
+        {/* Scroll Section Skeleton */}
+        <div className="w-full flex items-center justify-center py-16">
+          <div className="h-[400px] w-11/12 bg-gray-800 rounded-3xl"></div>
+        </div>
+      
+        {/* 3 Steps Section Skeleton */}
+        <div className="w-full flex flex-col items-center py-20 gap-8">
+          <div className="h-5 w-32 bg-gray-700 rounded"></div>
+          <div className="h-10 w-64 bg-gray-700 rounded"></div>
+      
+          <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 px-4 max-w-5xl">
+            {[1, 2, 3].map((_, i) => (
+              <div key={i} className="flex items-start gap-4 w-full md:w-1/3">
+                <div className="w-16 h-16 bg-gray-700 rounded-full shrink-0"></div>
+                <div className="flex flex-col gap-2">
+                  <div className="h-5 w-40 bg-gray-700 rounded"></div>
+                  <div className="h-4 w-56 bg-gray-700 rounded"></div>
+                  <div className="h-4 w-48 bg-gray-700 rounded"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      )}
-
-      <NavbarDemo />
+      
+        {/* Testimonials Skeleton */}
+        <div className="w-full flex items-center justify-center py-16">
+          <div className="h-48 w-10/12 bg-gray-800 rounded-2xl"></div>
+        </div>
+      
+        {/* Footer Skeleton */}
+        <div className="w-full flex flex-col items-center justify-center py-8 border-t border-gray-800">
+          <div className="h-4 w-40 bg-gray-700 rounded mb-2"></div>
+          <div className="h-4 w-64 bg-gray-700 rounded"></div>
+        </div>
+      </div>
+      
+      ):(
+        <>
+<NavbarDemo />
       
       {/* Aurora as background */}
       <div className="fixed inset-0 z-0">
@@ -188,6 +257,9 @@ export default function BackgroundBoxesDemo() {
         
         <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
       </footer>
+        </>
+      ) 
+      }
     </div>
   );
 }
