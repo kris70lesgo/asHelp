@@ -8,6 +8,7 @@ import TailwindConnectButton from "@/components/button";
 import TestimonialMarquee from "@/components/mwrap"
 import { NavbarDemo } from "@/components/nav";
 import Image from "next/image";
+import PageSkeleton from "@/components/PageSkeleton";
 
 export default function BackgroundBoxesDemo() {
   const [scrollY, setScrollY] = useState(0);
@@ -45,67 +46,7 @@ export default function BackgroundBoxesDemo() {
   return (
     <div className="relative bg-slate-900">
       {/* Loading Screen */}
-      {isLoading ? (
-        <div className="fixed inset-0 z-50 flex flex-col bg-slate-900 overflow-y-auto skeleton-animation">
-        {/* Navbar Skeleton */}
-          <div className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-800">
-            <div className="h-6 w-32 bg-gray-700 rounded"></div>
-            <div className="flex gap-4">
-              <div className="h-5 w-16 bg-gray-700 rounded"></div>
-              <div className="h-5 w-16 bg-gray-700 rounded"></div>
-              <div className="h-5 w-16 bg-gray-700 rounded"></div>
-            </div>
-            <div className="h-8 w-20 bg-gray-700 rounded-full"></div>
-          </div>
-        
-          {/* Hero Section Skeleton */}
-          <div className="flex flex-col items-center justify-center text-center py-24 px-4 gap-6">
-            <div className="h-8 w-56 bg-gray-700 rounded-full"></div>
-            <div className="flex flex-wrap justify-center gap-2">
-              <div className="h-12 w-48 bg-gray-700 rounded"></div>
-              <div className="h-12 w-40 bg-gray-700 rounded"></div>
-            </div>
-            <div className="h-5 w-80 bg-gray-700 rounded mt-2"></div>
-            <div className="h-5 w-64 bg-gray-700 rounded"></div>
-            <div className="h-10 w-40 bg-gray-700 rounded-full mt-4"></div>
-          </div>
-        
-          {/* Scroll Section Skeleton */}
-          <div className="w-full flex items-center justify-center py-16">
-            <div className="h-[400px] w-11/12 bg-gray-800 rounded-3xl"></div>
-          </div>
-        
-          {/* 3 Steps Section Skeleton */}
-          <div className="w-full flex flex-col items-center py-20 gap-8">
-            <div className="h-5 w-32 bg-gray-700 rounded"></div>
-            <div className="h-10 w-64 bg-gray-700 rounded"></div>
-        
-            <div className="flex flex-col md:flex-row justify-center items-start gap-10 md:gap-20 px-4 max-w-5xl">
-              {[1, 2, 3].map((_, i) => (
-                <div key={i} className="flex items-start gap-4 w-full md:w-1/3">
-                  <div className="w-16 h-16 bg-gray-700 rounded-full shrink-0"></div>
-                  <div className="flex flex-col gap-2">
-                    <div className="h-5 w-40 bg-gray-700 rounded"></div>
-                    <div className="h-4 w-56 bg-gray-700 rounded"></div>
-                    <div className="h-4 w-48 bg-gray-700 rounded"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        
-          {/* Testimonials Skeleton */}
-          <div className="w-full flex items-center justify-center py-16">
-            <div className="h-48 w-10/12 bg-gray-800 rounded-2xl"></div>
-          </div>
-        
-          {/* Footer Skeleton */}
-          <div className="w-full flex flex-col items-center justify-center py-8 border-t border-gray-800">
-            <div className="h-4 w-40 bg-gray-700 rounded mb-2"></div>
-            <div className="h-4 w-64 bg-gray-700 rounded"></div>
-          </div>
-        </div>
-      ):(
+      {isLoading ? <PageSkeleton/> :(
         <>
           <NavbarDemo />
       
