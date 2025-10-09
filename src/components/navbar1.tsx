@@ -8,30 +8,34 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-50">
+      {/* Glassmorphism Background */}
+      <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-2xl"></div>
+      <div className="relative max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
         
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Link href="/">
-            <Image src="/logo.svg" alt="Logo" width={40} height={40} />
+          <Link href="/" className="text-white text-2xl font-bold">
+            Logo
           </Link>
         </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-white">
-          <Link href="#">Overview</Link>
-          <Link href="#">Why Tedy?</Link>
-          <Link href="#">Resources</Link>
-          <Link href="#">Demo</Link>
-          <Link href="#">Pricing</Link>
+        <div className="hidden md:flex items-center space-x-12 text-base font-medium text-white/90">
+          <Link href="#" className="hover:text-white transition-colors duration-200 relative">
+            <span className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">Home</span>
+          </Link>
+          <Link href="#" className="hover:text-white transition-colors duration-200">Services</Link>
+          <Link href="#" className="hover:text-white transition-colors duration-200">About</Link>
+          <Link href="#" className="hover:text-white transition-colors duration-200">Portfolio</Link>
+          <Link href="#" className="hover:text-white transition-colors duration-200">Contact</Link>
         </div>
 
         {/* Desktop Action Buttons */}
         <div className="hidden md:flex items-center space-x-4">
             <Link
                 href="/sign"
-                className="bg-black text-white text-sm font-semibold py-2 px-5 rounded-full hover:opacity-90 transition"
+                className="bg-white/10 backdrop-blur-sm text-white text-sm font-semibold py-3 px-6 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-200"
             >
                 Sign in
             </Link>
@@ -49,14 +53,14 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 bg-opacity-90">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Overview</Link>
-                <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Why Tedy?</Link>
-                <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Resources</Link>
-                <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Demo</Link>
-                <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white">Pricing</Link>
-                <Link href="/sign" className="block px-3 py-2 rounded-md text-base font-semibold text-white bg-black rounded-full text-center">Sign in</Link>
+        <div className="md:hidden bg-black/30 backdrop-blur-xl border-t border-white/10">
+            <div className="px-6 pt-4 pb-6 space-y-3">
+                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Home</Link>
+                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Services</Link>
+                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">About</Link>
+                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Portfolio</Link>
+                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Contact</Link>
+                <Link href="/sign" className="block px-4 py-3 rounded-lg text-base font-semibold text-white bg-white/10 backdrop-blur-sm border border-white/20 text-center mt-4">Sign in</Link>
             </div>
         </div>
       )}
