@@ -5,7 +5,7 @@ import Aurora from "./Backgrounds/Aurora"
 
 export const LoadingScreen: React.FC = () => {
     const [mounted, setMounted] = useState(false);
-    const loadingWords = ['buttons', 'forms', 'switches', 'cards', 'buttons'];
+    const loadingWords = ['assignments', 'modules', 'forms', 'cards', 'notes'];
 
     useEffect(() => {
         setMounted(true);
