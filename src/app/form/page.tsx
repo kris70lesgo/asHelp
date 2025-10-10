@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+export const dynamic = 'force-dynamic';
+import React, { useState, useEffect, Suspense } from "react";
 import { Boxes } from "@/components/ui/background-boxes";
 import { cn } from "@/lib/utils";
 import BlurText from "@/components/BlurText";
@@ -14,10 +15,12 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/animate-ui/radix/checkbox';
 import { Counter } from '@/components/animate-ui/components/counter';
 import { PayButton } from '@/components/paybutton'
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const FormPa = () => {
-    const searchParams = useSearchParams();
+  // Read query params on client to avoid CSR bailout during prerender
+  const [noOfPageState, setNoOfPageState] = React.useState<number | null>(null);
+  const [totalAmountState, setTotalAmountState] = React.useState<number | null>(null);
     const [step, setStep] = useState(1);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -51,8 +54,17 @@ const FormPa = () => {
   
     const router = useRouter();
   
-    const noOfPage = Number(searchParams.get('noOfPage')) || 10;
-    const totalAmount = Number(searchParams.get('totalAmount')) || 100;
+    React.useEffect(() => {
+      if (typeof window === 'undefined') return;
+      const sp = new URLSearchParams(window.location.search);
+      const n = Number(sp.get('noOfPage') || 10);
+      const t = Number(sp.get('totalAmount') || 100);
+      setNoOfPageState(Number.isNaN(n) ? 10 : n);
+      setTotalAmountState(Number.isNaN(t) ? 100 : t);
+    }, []);
+
+    const noOfPage = noOfPageState ?? 10;
+    const totalAmount = totalAmountState ?? 100;
   
     const handleFileChange =
       (setter: React.Dispatch<React.SetStateAction<File | null>>) =>
@@ -610,5 +622,11 @@ const FormPa = () => {
     );
   };
   
-  export default FormPa;
+  export default function FormPage() {
+    return (
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-white">Loading form…</div>}>
+        <FormPa />
+      </Suspense>
+    );
+  }
   

@@ -1,6 +1,10 @@
 "use client";
-import { PaymentOptionsOverlay } from '@/components/payment';
+import NextDynamic from 'next/dynamic';
+
+export const dynamic = 'force-dynamic';
+
+const PaymentClientWrapper = NextDynamic(() => import('@/components/payment-client'), { ssr: false });
 
 export default function PaymentPage() {
-  return <PaymentOptionsOverlay />;
+  return <PaymentClientWrapper />;
 }
