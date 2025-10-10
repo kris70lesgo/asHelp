@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import TestimonialMarquee from "@/components/mwrap"
 import { NavbarDemo } from "@/components/nav";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { LoadingScreen } from "@/components/PageTransition";
 
 
 
@@ -46,27 +47,18 @@ export default function BackgroundBoxesDemo() {
   const mainContentOpacity = scrollY > 100 ? 0 : 1;
   const mainContentTransform = scrollY > 100 ? 'translateY(-50px)' : 'translateY(0)';
 
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+
 
   return (
-    <div className="relative bg-slate-900">
-      {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
-          <div className="flex flex-col items-center gap-4">
-            <DotLottieReact
-              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
-              loop
-              autoplay
-            />
-            <p className="text-white text-lg font-medium">Loading...</p>
-          </div>
-        </div>
-      )}
+    <div className="relative bg-[#111111]">
 
+      {/* Loading Screen */}
+      <div className={`transition-opacity duration-900 ease-in-out ${isLoading ? 'opacity-100' : 'opacity-0'}`}>
+        {isLoading && <LoadingScreen />}
+      </div>
+
+      <div className={`relative bg-slate-900 transition-all duration-500 ease-in ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      
       <NavbarDemo />
       
       {/* Aurora as background */}
@@ -140,7 +132,7 @@ export default function BackgroundBoxesDemo() {
             width={1400}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
-          />
+            />
         </ContainerScroll>
         
       </div>
@@ -188,6 +180,7 @@ export default function BackgroundBoxesDemo() {
         
         <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
       </footer>
+            </div>
     </div>
   );
 }
