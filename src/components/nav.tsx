@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars';
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseclient";
+import ThemeToggle from "@/components/theme-toggle";
 
 export function NavbarDemo() {
   const navItems = [
@@ -59,6 +60,8 @@ export function NavbarDemo() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <GitHubStarsButton username="kris70lesgo" repo="s1" />
+            {/* Theme toggle allows users to switch light/dark mode */}
+            <ThemeToggle />
             {user === null && (
               <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>Login</NavbarButton>
             )}
@@ -99,6 +102,8 @@ export function NavbarDemo() {
                   Login
                 </NavbarButton>
               )}
+              {/* Mobile theme toggle */}
+              <ThemeToggle />
             </div>
           </MobileNavMenu>
         </MobileNav>
