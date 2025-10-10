@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = 'force-dynamic';
 import React from "react";
 import { Boxes } from "@/components/ui/background-boxes";
 import SignupFormDemo from "@/components/signup";
