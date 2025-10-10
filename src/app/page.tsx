@@ -5,72 +5,89 @@ import { cn } from "@/lib/utils";
 import Button2 from '@/components/button2';
 import { User, FileText, UploadCloud, CreditCard, Github } from 'lucide-react';
 import Upload from '@/components/upload';
-import Aurora from '@/components/Backgrounds/Aurora';
+// import Aurora from '@/components/Backgrounds/Aurora';
 import { useRef } from 'react';
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+// import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import TailwindConnectButton from "@/components/button";
 import { useRouter } from "next/navigation";
-import TestimonialMarquee from "@/components/mwrap"
-import { NavbarDemo } from "@/components/nav";
+// import TestimonialMarquee from "@/components/mwrap"
+// import { NavbarDemo } from "@/components/nav";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import dynamic from "next/dynamic";
+import Image from "next/image";
+
+const Aurora = dynamic(() => import("@/components/Backgrounds/Aurora"), { ssr: false });
+const ContainerScroll = dynamic(() => import("@/components/ui/container-scroll-animation").then(m => m.ContainerScroll),
+{ ssr: false });
+const NavbarDemo = dynamic(() => import("@/components/nav").then(m => m.NavbarDemo), { ssr: false });
+const TestimonialMarquee = dynamic(() => import("@/components/mwrap"), { ssr: false });
 
 
 
 export default function BackgroundBoxesDemo() {
   const [scrollY, setScrollY] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [mounted, setMounted] = useState(false);
   const router = useRouter();
+   const [ready, setReady] = useState(false);
+ useEffect(() => {
+   const id = ('requestIdleCallback' in window)
+     ? (window as any).requestIdleCallback(() => setReady(true))
+     : setTimeout(() => setReady(true), 150);
+   return () => (window as any).cancelIdleCallback ? (window as any).cancelIdleCallback(id) : clearTimeout(id);
+ }, []);
 
-  useEffect(() => {
-    setMounted(true);
+  // useEffect(() => {
+  //   setMounted(true);
     
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   const handleScroll = () => setScrollY(window.scrollY);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
+  // useEffect(() => {
+  //   if (!mounted) return;
     
-    // Simulate loading time for components
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 4000); // Show loader for 4 seconds to see the animation properly
+  //   // Simulate loading time for components
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 4000); // Show loader for 4 seconds to see the animation properly
 
-    return () => clearTimeout(timer);
-  }, [mounted]);
-
+  //   return () => clearTimeout(timer);
+  // }, [mounted]);
+  
+   useEffect(() => {
+     let ticking = false;
+     const onScroll = () => {
+       if (!ticking) {
+         requestAnimationFrame(() => {
+           setScrollY(window.scrollY);
+           ticking = false;
+         });
+         ticking = true;
+       }
+     };
+     window.addEventListener('scroll', onScroll, { passive: true });
+     return () => window.removeEventListener('scroll', onScroll);
+   }, []);
   // Hide main content after scrolling 100px
   const mainContentOpacity = scrollY > 100 ? 0 : 1;
   const mainContentTransform = scrollY > 100 ? 'translateY(-50px)' : 'translateY(0)';
 
   // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+  // if (!mounted) {
+  //   return null;
+  // }
 
   return (
     <div className="relative bg-slate-900">
       {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
-          <div className="flex flex-col items-center gap-4">
-            <DotLottieReact
-              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
-              loop
-              autoplay
-            />
-            <p className="text-white text-lg font-medium">Loading...</p>
-          </div>
-        </div>
-      )}
 
       <NavbarDemo />
       
       {/* Aurora as background */}
-      <div className="fixed inset-0 z-0">
+      {ready && <div className="fixed inset-0 z-0">
         <Aurora
           colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
           blend={0.5}
@@ -78,17 +95,14 @@ export default function BackgroundBoxesDemo() {
           speed={0.5}
         />
       </div>
+        }
       
       {/* Main content centered - positioned fixed to stay in center */}
-      <div 
-        className={`fixed inset-0 z-20 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{
-          opacity: isLoading ? 0 : mainContentOpacity,
-          transform: mainContentTransform
-        }}
-      >
+      
+         <div 
+           className="fixed inset-0 z-20 flex flex-col items-center justify-center transition-all duration-500 ease-in-out"
+           style={{ opacity: mainContentOpacity, transform: mainContentTransform }}
+         >
         {/* Hero Section Layout Fix */}
         <div className="flex flex-col items-center justify-center gap-4 px-4 max-w-3xl mx-auto text-center">
           {/* Button Row */}
@@ -120,7 +134,7 @@ export default function BackgroundBoxesDemo() {
       <div className="h-screen"></div>
       
       {/* ContainerScroll in normal document flow for scrolling */}
-      <div className={`relative z-10 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      {ready && <div className={`relative z-10 transition-opacity duration-500`}>
         <ContainerScroll
           titleComponent={
             <>
@@ -133,17 +147,18 @@ export default function BackgroundBoxesDemo() {
             </>
           }
         >
-          <img
+          <Image
             src={`/linear.webp`}
             alt="hero"
             height={720}
             width={1400}
+            
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
           />
         </ContainerScroll>
         
-      </div>
+      </div>}
       {/* 3 Steps Section */}
       <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
         <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">HOW IT WORKS</div>
