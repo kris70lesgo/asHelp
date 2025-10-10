@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars';
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseclient";
+// import { supabase } from "@/lib/supabaseclient";
 
 export function NavbarDemo() {
   const navItems = [
@@ -35,20 +35,20 @@ export function NavbarDemo() {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    getUser();
-    // Listen for auth state changes
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, []);
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const { data: { user } } = await supabase.auth.getUser();
+  //     setUser(user);
+  //   };
+  //   getUser();
+  //   // Listen for auth state changes
+  //   const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setUser(session?.user ?? null);
+  //   });
+  //   return () => {
+  //     listener?.subscription.unsubscribe();
+  //   };
+  // }, []);
 
   return (
     <div className="relative w-full">
