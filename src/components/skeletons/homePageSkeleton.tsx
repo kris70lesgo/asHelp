@@ -1,19 +1,17 @@
-// components/HomePageSkeleton.tsx
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
 /**
  * A reusable skeleton component with a pulsing animation.
  */
-// I've seen a few different typings for your Skeleton component. 
-// React.ComponentProps<typeof motion.div> is the most robust.
 const Skeleton = ({ className, ...props }: React.ComponentProps<typeof motion.div>) => (
   <motion.div
     className={cn("rounded-md bg-slate-800", className)}
-    initial={{ opacity: 0.85 }} // Opacity increased
-    animate={{ opacity: [0.85, 1, 0.85] }} // Opacity increased
+    initial={{ opacity: 0.85 }}
+    animate={{ opacity: [0.85, 1, 0.85] }}
     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
     {...props}
   />
@@ -63,20 +61,26 @@ const HeroSkeleton = () => (
    
     {/* Main CTA Button Placeholder */}
     <Skeleton className="h-12 w-56 mt-6 rounded-lg" />
+
+    {/* Rotating loading messages */}
+    <div className="mt-6 text-center">
+      <ContainerTextFlip
+        words={["Loading Projects...", "Preparing Dashboard...", "Almost Ready..."]}
+        className="text-lg sm:text-xl md:text-2xl text-white font-semibold"
+      />
+    </div>
   </div>
 );
 
-
 /**
  * The main skeleton loader for the home page.
- * It combines the Navbar and Hero skeletons to mimic the page layout.
  */
 export default function HomePageSkeleton() {
   return (
     <motion.div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-900"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }} // Fades out smoothly on exit
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
       <NavbarSkeleton />
