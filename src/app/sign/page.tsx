@@ -3,9 +3,7 @@ import React from "react";
 import { Boxes } from "@/components/ui/background-boxes";
 import SignupFormDemo from "@/components/signup";
 import Navbar from "@/components/navbar1";
-import { AnimatePresence } from 'framer-motion';
-import SignupPageSkeleton from "@/components/skeletons/signinPageSkeleton";
-
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -27,15 +25,22 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center p-4">
-      {/* Loading Screen --- UPDATED SECTION */}
-      <AnimatePresence>
-        {isLoading && <SignupPageSkeleton />}
-      </AnimatePresence>
-
+      {/* Custom Loading Screen */}
+      <LoadingScreen
+        isVisible={isLoading}
+        loadingMessages={[
+          "Setting up your account...",
+          "Almost there...",
+          "Welcome to AsHelp...",
+        ]}
+        variant="minimal"
+      />
       <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
       <Boxes />
-      
-      <div className={`relative z-30 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+
+      <div
+        className={`relative z-30 ${isLoading ? "opacity-0" : "opacity-100"}`}
+      >
         {!isLoading && <SignupFormDemo />}
       </div>
     </div>
