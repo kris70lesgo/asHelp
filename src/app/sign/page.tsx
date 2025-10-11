@@ -3,7 +3,7 @@ import React from "react";
 import { Boxes } from "@/components/ui/background-boxes";
 import SignupFormDemo from "@/components/signup";
 import Navbar from "@/components/navbar1";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -25,23 +25,22 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center p-4">
-      {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900">
-          <div className="flex flex-col items-center gap-4">
-            <DotLottieReact
-              src="https://lottie.host/184e3f2e-31ad-4bfd-9ea2-5bc8650cf1c9/dBlK14bVkG.lottie"
-              loop
-              autoplay
-            />
-            <p className="text-white text-lg font-medium">Loading...</p>
-          </div>
-        </div>
-      )}
+      {/* Custom Loading Screen */}
+      <LoadingScreen
+        isVisible={isLoading}
+        loadingMessages={[
+          "Setting up your account...",
+          "Almost there...",
+          "Welcome to AsHelp...",
+        ]}
+        variant="minimal"
+      />
       <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
       <Boxes />
-      
-      <div className={`relative z-30 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+
+      <div
+        className={`relative z-30 ${isLoading ? "opacity-0" : "opacity-100"}`}
+      >
         {!isLoading && <SignupFormDemo />}
       </div>
     </div>
