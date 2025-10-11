@@ -22,7 +22,7 @@
     "lucide-react": "^0.518.0",
     "mini-svg-data-uri": "^1.4.4",
     "motion": "^12.20.1",
-    "next": "15.3.4",
+    "next": "^15.5.4",
     "ogl": "^1.0.11",
     "radix-ui": "^1.4.2",
     "razorpay": "^2.9.6",
