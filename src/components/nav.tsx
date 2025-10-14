@@ -11,10 +11,10 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState, useEffect } from "react";
-import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars';
+import { GitHubStarsButton } from "@/components/animate-ui/buttons/github-stars";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseclient";
-import type { User } from '@supabase/supabase-js';
+import type { User } from "@supabase/supabase-js";
 
 export function NavbarDemo() {
   const navItems = [
@@ -24,7 +24,7 @@ export function NavbarDemo() {
     },
     {
       name: "About",
-      link: "",
+      link: "/about",
     },
     {
       name: "Contact",
@@ -38,14 +38,18 @@ export function NavbarDemo() {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       setUser(user);
     };
     getUser();
     // Listen for auth state changes
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
     return () => {
       listener?.subscription.unsubscribe();
     };
@@ -61,7 +65,12 @@ export function NavbarDemo() {
           <div className="flex items-center gap-4">
             <GitHubStarsButton username="kris70lesgo" repo="s1" />
             {user === null && (
-              <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>Login</NavbarButton>
+              <NavbarButton
+                variant="secondary"
+                onClick={() => router.push("/sign")}
+              >
+                Login
+              </NavbarButton>
             )}
           </div>
         </NavBody>
@@ -93,7 +102,10 @@ export function NavbarDemo() {
             <div className="flex w-full flex-col gap-4">
               {user === null && (
                 <NavbarButton
-                  onClick={() => { setIsMobileMenuOpen(false); router.push('/sign'); }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    router.push("/sign");
+                  }}
                   variant="primary"
                   className="w-full"
                 >
@@ -104,7 +116,6 @@ export function NavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-     
 
       {/* Navbar */}
     </div>
