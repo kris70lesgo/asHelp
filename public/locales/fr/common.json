@@ -1,0 +1,132 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord", 
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "logout": "Déconnexion"
+  },
+  "hero": {
+    "badge": "Découvrez des Solutions Authentiques",
+    "title": "Besoin d'aide pour",
+    "subtitle": "Obtenez des services d'écriture d'assignations professionnels auprès d'experts vérifiés. Contenu 100% sans IA, sans plagiat.",
+    "categories": {
+      "projects": "Projets",
+      "assignments": "assignations",
+      "termwork": "Travaux pratiques", 
+      "ppt": "Présentations"
+    }
+  },
+  "steps": {
+    "title": "Seulement 3 étapes pour commencer",
+    "subtitle": "COMMENT ÇA MARCHE",
+    "step1": {
+      "title": "Téléchargez Vos Données",
+      "description": "Téléchargez simplement vos données sur notre plateforme sécurisée. Nous prenons en charge divers formats de fichiers et types de données pour assurer une intégration transparente avec vos systèmes existants."
+    },
+    "step2": {
+      "title": "Cliquez sur Démarrer",
+      "description": "Nos algorithmes IA avancés traitent et analysent automatiquement vos données, extrayant des informations précieuses et des modèles qui seraient difficiles à identifier manuellement."
+    },
+    "step3": {
+      "title": "Obtenez des Informations Exploitables", 
+      "description": "Recevez des informations claires et exploitables et des recommandations basées sur l'analyse IA. Utilisez ces informations pour prendre des décisions basées sur les données et améliorer vos stratégies commerciales."
+    }
+  },
+  "form": {
+    "personalInfo": {
+      "title": "Informations Personnelles",
+      "step": "Étape 1 sur 4",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "firstNamePlaceholder": "ex., Jean",
+      "lastNamePlaceholder": "ex., Dupont",
+      "emailPlaceholder": "ex., jean.dupont@exemple.com",
+      "phonePlaceholder": "ex., +33 1 23 45 67 89"
+    },
+    "academicInfo": {
+      "title": "Informations Académiques",
+      "step": "Étape 2 sur 4", 
+      "subject": "Matière",
+      "course": "Formation",
+      "branch": "Spécialité",
+      "semester": "Semestre",
+      "subjectPlaceholder": "ex., Mathématiques",
+      "coursePlaceholder": "ex., Licence d'Ingénierie",
+      "branchPlaceholder": "ex., Informatique",
+      "semesterPlaceholder": "ex., 3ème"
+    },
+    "assignmentDetails": {
+      "title": "Détails de l'Assignation",
+      "step": "Étape 3 sur 4",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Décrivez les exigences de votre assignation...",
+      "uploadFile": "Télécharger le Fichier d'Assignation",
+      "uploadNotes": "Télécharger des Notes Supplémentaires (Optionnel)",
+      "fileTypes": "PDF, DOC, DOCX (Max 10MB)",
+      "noOfPages": "Nombre de Pages",
+      "extraPages": "Pages Supplémentaires",
+      "terms": "J'accepte les termes et conditions"
+    },
+    "payment": {
+      "title": "Paiement",
+      "step": "Étape 4 sur 4",
+      "totalAmount": "Montant Total",
+      "proceedToPayment": "Procéder au Paiement"
+    },
+    "buttons": {
+      "next": "Suivant",
+      "previous": "Précédent",
+      "submit": "Soumettre",
+      "upload": "Télécharger le Fichier"
+    },
+    "required": "*"
+  },
+  "dashboard": {
+    "title": "Hub Académique",
+    "stats": {
+      "plagiarism": "0% de Plagiat",
+      "projectsDelivered": "5K+ Projets Livrés",
+      "successRate": "98% de Taux de Réussite", 
+      "support": "Support 24/7"
+    },
+    "categories": {
+      "assignments": "Assignations",
+      "projects": "Projets",
+      "presentations": "Présentations",
+      "termwork": "Travaux Pratiques"
+    },
+    "featuredProjects": {
+      "assignmentMed": "Assignation-Méd",
+      "termworkMed": "Travaux-Méd",
+      "ppts": "Présentations",
+      "tags": {
+        "bestSeller": "Meilleure Vente",
+        "new": "Nouveau",
+        "popular": "Populaire"
+      },
+      "levels": {
+        "advanced": "Avancé",
+        "expert": "Expert",
+        "intermediate": "Intermédiaire"
+      },
+      "duration": {
+        "days": "jours",
+        "weeks": "semaines"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Copyright",
+    "allRightsReserved": "Tous droits réservés"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "required": "Ce champ est requis",
+    "optional": "Optionnel"
+  }
+}
