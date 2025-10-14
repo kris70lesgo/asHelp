@@ -26,7 +26,11 @@ export function NavbarDemo() {
       link: "",
     },
     {
-      name: t('navigation.about', 'About'),
+      name: "AI Generator",
+      link: "/ai-generator",
+    },
+    {
+      name: "About",
       link: "",
     },
     {
