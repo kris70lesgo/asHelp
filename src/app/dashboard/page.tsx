@@ -66,6 +66,19 @@ const AcademicHub = () => {
       originalPrice: 100,
       tag: "Popular",
       tagColor: "bg-blue-500"
+    },
+    {
+      id: 4,
+      title: "AI Generator",
+      category: "AI-Powered",
+      level: "All Levels",
+      rating: 4.9,
+      reviews: 12,
+      duration: "Instant",
+      price: 0,
+      originalPrice: 0,
+      tag: "Free",
+      tagColor: "bg-green-500"
     }
     
   ];
@@ -166,7 +179,12 @@ const AcademicHub = () => {
                       className="w-full h-full object-contain rounded-xl"
                     />
                   )}
-                  {project.id !== 1 && project.id !== 2 && (
+                  {project.id === 4 && (
+                    <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-xl flex items-center justify-center">
+                      <div className="text-4xl">🤖</div>
+                    </div>
+                  )}
+                  {project.id !== 1 && project.id !== 2 && project.id !== 4 && (
                     <div className="w-12 h-12 bg-slate-600 rounded-lg opacity-50"></div>
                   )}
                 </div>
@@ -196,11 +214,21 @@ const AcademicHub = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-white">₹{project.price}</span>
-                    <span className="text-sm text-slate-400 line-through">₹{project.originalPrice}</span>
+                    {project.id === 4 ? (
+                      <span className="text-2xl font-bold text-green-400">FREE</span>
+                    ) : (
+                      <>
+                        <span className="text-2xl font-bold text-white">₹{project.price}</span>
+                        <span className="text-sm text-slate-400 line-through">₹{project.originalPrice}</span>
+                      </>
+                    )}
                   </div>
                   <button
-                    className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg font-medium transition-all transform hover:scale-105"
+                    className={`px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 ${
+                      project.id === 4 
+                        ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700'
+                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                    }`}
                     onClick={() => {
                       if (project.id === 1) {
                         router.push('/form?noOfPage=10&totalAmount=100');
@@ -208,10 +236,12 @@ const AcademicHub = () => {
                         router.push('/form?noOfPage=24&totalAmount=250');
                       } else if (project.id === 3) {
                         router.push('/form?noOfPage=8&totalAmount=50');
+                      } else if (project.id === 4) {
+                        router.push('/ai-generator');
                       }
                     }}
                   >
-                    Add to Cart
+                    {project.id === 4 ? 'Try Now' : 'Add to Cart'}
                   </button>
                 </div>
               </div>
