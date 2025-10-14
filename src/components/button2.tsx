@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
 
 interface Button2Props {
   disabled?: boolean;
@@ -6,6 +7,7 @@ interface Button2Props {
 }
 
 const Button2: React.FC<Button2Props> = ({ disabled = false, onClick }) => {
+  const { t } = useTranslations();
   const buttonClasses = `flex justify-center gap-2 items-center shadow-xl text-lg lg:font-semibold border-gray-50 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group ${
     disabled ? 'opacity-50 cursor-not-allowed' : ''
   }`;
@@ -25,7 +27,7 @@ const Button2: React.FC<Button2Props> = ({ disabled = false, onClick }) => {
           }`}
         ></span>
         <span className={`text-black ${!disabled ? 'group-hover:text-white' : ''}`}>
-        Next
+        {t('form.buttons.next', 'Next')}
         </span>
         <svg
           className={`w-8 h-8 justify-end ease-linear duration-300 rounded-full border border-gray-700 p-2 rotate-45 ${

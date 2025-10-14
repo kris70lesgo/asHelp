@@ -15,19 +15,22 @@ import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars'
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseclient";
 import type { User } from '@supabase/supabase-js';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export function NavbarDemo() {
+  const { t } = useTranslations();
   const navItems = [
     {
-      name: "Features",
+      name: t('navigation.features', 'Features'),
       link: "",
     },
     {
-      name: "About",
+      name: t('navigation.about', 'About'),
       link: "",
     },
     {
-      name: "Contact",
+      name: t('navigation.contact', 'Contact'),
       link: "",
     },
   ];
@@ -58,10 +61,15 @@ export function NavbarDemo() {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
-            <GitHubStarsButton username="kris70lesgo" repo="s1" />
+          <div className="flex items-center gap-3 ml-6">
+            <LanguageSwitcher className="shrink-0" />
+            <div className="hidden sm:block">
+              <GitHubStarsButton username="kris70lesgo" repo="s1" />
+            </div>
             {user === null && (
-              <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>Login</NavbarButton>
+              <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>
+                {t('navigation.signIn', 'Login')}
+              </NavbarButton>
             )}
           </div>
         </NavBody>
@@ -91,13 +99,16 @@ export function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
               {user === null && (
                 <NavbarButton
                   onClick={() => { setIsMobileMenuOpen(false); router.push('/sign'); }}
                   variant="primary"
                   className="w-full"
                 >
-                  Login
+                  {t('navigation.signIn', 'Login')}
                 </NavbarButton>
               )}
             </div>

@@ -1,0 +1,132 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "logout": "Logout"
+  },
+  "hero": {
+    "badge": "Discover Genuine Solutions",
+    "title": "Want help in",
+    "subtitle": "Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.",
+    "categories": {
+      "projects": "Projects",
+      "assignments": "assignments", 
+      "termwork": "Termwork",
+      "ppt": "PPT"
+    }
+  },
+  "steps": {
+    "title": "Just 3 steps to get started",
+    "subtitle": "HOW IT WORKS",
+    "step1": {
+      "title": "Upload Your Data",
+      "description": "Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems."
+    },
+    "step2": {
+      "title": "Click Start", 
+      "description": "Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually."
+    },
+    "step3": {
+      "title": "Get Actionable Insights",
+      "description": "Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies."
+    }
+  },
+  "form": {
+    "personalInfo": {
+      "title": "Personal Information",
+      "step": "Step 1 of 4",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "firstNamePlaceholder": "e.g., John",
+      "lastNamePlaceholder": "e.g., Doe",
+      "emailPlaceholder": "e.g., john.doe@example.com",
+      "phonePlaceholder": "e.g., +1 (555) 123-4567"
+    },
+    "academicInfo": {
+      "title": "Academic Information", 
+      "step": "Step 2 of 4",
+      "subject": "Subject",
+      "course": "Course",
+      "branch": "Branch",
+      "semester": "Semester",
+      "subjectPlaceholder": "e.g., Mathematics",
+      "coursePlaceholder": "e.g., Bachelor of Engineering",
+      "branchPlaceholder": "e.g., Computer Science",
+      "semesterPlaceholder": "e.g., 3rd"
+    },
+    "assignmentDetails": {
+      "title": "Assignment Details",
+      "step": "Step 3 of 4", 
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Describe your assignment requirements...",
+      "uploadFile": "Upload Assignment File",
+      "uploadNotes": "Upload Additional Notes (Optional)",
+      "fileTypes": "PDF, DOC, DOCX (Max 10MB)",
+      "noOfPages": "Number of Pages",
+      "extraPages": "Extra Pages",
+      "terms": "I agree to the terms and conditions"
+    },
+    "payment": {
+      "title": "Payment",
+      "step": "Step 4 of 4",
+      "totalAmount": "Total Amount",
+      "proceedToPayment": "Proceed to Payment"
+    },
+    "buttons": {
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Submit",
+      "upload": "Upload File"
+    },
+    "required": "*"
+  },
+  "dashboard": {
+    "title": "Academic Hub",
+    "stats": {
+      "plagiarism": "0% Plagiarism",
+      "projectsDelivered": "5K+ Projects Delivered", 
+      "successRate": "98% Success Rate",
+      "support": "24/7 Support"
+    },
+    "categories": {
+      "assignments": "Assignments",
+      "projects": "Projects",
+      "presentations": "Presentations", 
+      "termwork": "Termwork"
+    },
+    "featuredProjects": {
+      "assignmentMed": "Assignment-Med",
+      "termworkMed": "Termwork-Med",
+      "ppts": "PPTs",
+      "tags": {
+        "bestSeller": "Best Seller",
+        "new": "New",
+        "popular": "Popular"
+      },
+      "levels": {
+        "advanced": "Advanced",
+        "expert": "Expert", 
+        "intermediate": "Intermediate"
+      },
+      "duration": {
+        "days": "days",
+        "weeks": "weeks"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Copyright",
+    "allRightsReserved": "All rights reserved"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "required": "This field is required",
+    "optional": "Optional"
+  }
+}

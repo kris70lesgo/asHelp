@@ -10,10 +10,12 @@ import { NavbarDemo } from "@/components/nav";
 import Image from 'next/image';
 import { AnimatePresence } from "framer-motion";
 import HomePageSkeleton from "@/components/skeletons/homePageSkeleton";
+import { useTranslations } from '@/hooks/useTranslations';
 
 
 
 export default function BackgroundBoxesDemo() {
+  const { t } = useTranslations();
   const [scrollY, setScrollY] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
@@ -80,21 +82,26 @@ export default function BackgroundBoxesDemo() {
           {/* Button Row */}
           <button className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 text-black font-normal text-sm shadow-sm border border-gray-200 hover:bg-gray-200 transition-all mb-2">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="text-black"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 4.636" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Discover Genuine Solutions
+            {t('hero.badge', 'Discover Genuine Solutions')}
           </button>
           {/* Heading + Flip Row */}
           <div className="flex flex-row flex-wrap items-center justify-center gap-1 w-full">
             <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-semibold whitespace-nowrap">
-              Want help in
+              {t('hero.title', 'Want help in')}
             </h1>
             <ContainerTextFlip
-              words={["Projects", "assignments", "Termwork", "PPT"]}
+              words={[
+                t('hero.categories.projects', 'Projects'),
+                t('hero.categories.assignments', 'assignments'),
+                t('hero.categories.termwork', 'Termwork'),
+                t('hero.categories.ppt', 'PPT')
+              ]}
               className="text-lg xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap"
             />
           </div>
           {/* Description Row */}
           <div className="mt-2 text-gray-400 text-xs sm:text-lg max-w-xl">
-            Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.
+            {t('hero.subtitle', 'Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.')}
           </div>
         </div>
         <div className="flex flex-col items-center mt-6 sm:mt-8 w-full px-4">
@@ -132,8 +139,12 @@ export default function BackgroundBoxesDemo() {
       </div>
       {/* 3 Steps Section */}
       <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
-        <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">HOW IT WORKS</div>
-        <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
+        <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">
+          {t('steps.subtitle', 'HOW IT WORKS')}
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">
+          {t('steps.title', 'Just 3 steps to get started')}
+        </h2>
         <div className="flex flex-col md:flex-row gap-10 md:gap-20 max-w-5xl mx-auto w-full justify-center items-start">
           {/* Step 1 */}
           <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
@@ -141,8 +152,12 @@ export default function BackgroundBoxesDemo() {
               <UploadCloud size={36} />
             </span>
             <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">1. Upload Your Data</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
+              <h3 className="text-lg font-bold text-white dark:text-white mb-1">
+                1. {t('steps.step1.title', 'Upload Your Data')}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-base">
+                {t('steps.step1.description', 'Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.')}
+              </p>
             </div>
           </div>
           {/* Step 2 */}
@@ -151,8 +166,12 @@ export default function BackgroundBoxesDemo() {
               <FileText size={36} />
             </span>
             <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">2. Click Start</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
+              <h3 className="text-lg font-bold text-white dark:text-white mb-1">
+                2. {t('steps.step2.title', 'Click Start')}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-base">
+                {t('steps.step2.description', 'Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.')}
+              </p>
             </div>
           </div>
           {/* Step 3 */}
@@ -161,8 +180,12 @@ export default function BackgroundBoxesDemo() {
               <CreditCard size={36} />
             </span>
             <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">3. Get Actionable Insights</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
+              <h3 className="text-lg font-bold text-white dark:text-white mb-1">
+                3. {t('steps.step3.title', 'Get Actionable Insights')}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-base">
+                {t('steps.step3.description', 'Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.')}
+              </p>
             </div>
           </div>
         </div>
@@ -172,7 +195,9 @@ export default function BackgroundBoxesDemo() {
       {/* Made by and Copyright */}
       <footer className="w-full flex flex-col items-center justify-center py-6 text-center text-xs text-gray-400">
         
-        <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
+        <div className="mt-1">
+          {t('footer.copyright', 'Copyright')} &copy; {new Date().getFullYear()} asshelp {t('footer.allRightsReserved', 'All rights reserved')}.
+        </div>
       </footer>
     </div>
   );
