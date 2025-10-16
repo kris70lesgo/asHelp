@@ -10,6 +10,7 @@ import { NavbarDemo } from "@/components/nav";
 import Image from 'next/image';
 import { AnimatePresence } from "framer-motion";
 import HomePageSkeleton from "@/components/skeletons/homePageSkeleton";
+import Footer from "@/components/footer";
 
 
 
@@ -120,7 +121,7 @@ export default function BackgroundBoxesDemo() {
           }
         >
           <Image
-            src="/linear.webp"
+            src="/hero-image.png"
             alt="hero"
             height={720}
             width={1400}
@@ -169,11 +170,7 @@ export default function BackgroundBoxesDemo() {
       </section>
       {/* End 3 Steps Section */}
       <TestimonialMarquee/>
-      {/* Made by and Copyright */}
-      <footer className="w-full flex flex-col items-center justify-center py-6 text-center text-xs text-gray-400">
-        
-        <div className="mt-1">Copyright &copy; {new Date().getFullYear()} asshelp All rights reserved.</div>
-      </footer>
+      <Footer />
     </div>
   );
 }
