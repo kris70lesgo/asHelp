@@ -42,28 +42,34 @@
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-shiny-text: shiny-text 8s infinite
-;
+  --animate-shiny-text: shiny-text 8s infinite;
   @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;}
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;}}}
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
+}
 
 :root {
   --radius: 0.625rem;
@@ -144,10 +150,8 @@
 }
 
 .text-shadow-glow {
-  text-shadow: 
-    0 0 5px rgba(255, 255, 255, 0.3),
-    0 0 10px rgba(255, 255, 255, 0.2),
-    0 0 15px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 html,
@@ -156,5 +160,68 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+}
+@keyframes gradient-y {
+  0%,
+  100% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+}
 
+.animate-gradient-y {
+  background-size: 200% 200%;
+  animation: gradient-y 6s ease infinite;
+}
+.sparkle {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.8;
+  animation: sparkleAnim 2s infinite alternate;
+}
+
+@keyframes sparkleAnim {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes floatSparkle {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes colorShift {
+  0% {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  50% {
+    background: rgba(255, 100, 50, 0.9);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.9);
+  }
 }
