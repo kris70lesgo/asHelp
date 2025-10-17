@@ -9,8 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+
     "@lottiefiles/dotlottie-react": "^0.14.4",
+
+    "@google/generative-ai": "^0.21.0",
+    "@lottiefiles/dotlottie-react": "^0.14.2",
+
     "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-select": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@supabase/supabase-js": "^2.75.0",
     "@tabler/icons-react": "^3.34.0",
@@ -18,6 +25,12 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.19.1",
     "gsap": "^3.13.0",
+    "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.2",
+    "html-docx-js": "^0.3.1",
+    "jspdf": "^2.5.2",
+    "liquid-glass-react": "^1.1.1",
     "lucide-react": "^0.518.0",
     "mini-svg-data-uri": "^1.4.4",
     "motion": "^12.20.1",

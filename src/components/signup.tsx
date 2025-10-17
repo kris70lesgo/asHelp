@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import { supabase } from "@/lib/supabaseclient"; // Import your Supabase client
+import { AvatarCircles } from "./ui/avatar-circles";
+import { div } from "framer-motion/client";
+import { Sign } from "crypto";
 
 export default function SignupFormDemo() {
   const [email, setEmail] = useState("");
@@ -62,6 +65,40 @@ export default function SignupFormDemo() {
 
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-neutral-50 p-4 md:rounded-2xl md:p-8 dark:bg-black">
+      {isSignUp && (
+        <div>
+          <AvatarCircles className="flex justify-center mb-6 mt-4"
+            numPeople={99} 
+            avatarUrls={[
+              {
+                imageUrl: "https://i.pravatar.cc/150?img=32",
+                profileUrl: "#",
+              },
+              {
+                imageUrl: "https://i.pravatar.cc/150?img=12",
+                profileUrl: "#",
+              },
+              {
+                imageUrl: "https://i.pravatar.cc/150?img=47",
+                profileUrl: "#",
+              },
+              {
+                imageUrl: "https://i.pravatar.cc/150?img=3",
+                profileUrl: "#",
+              },
+              { 
+                imageUrl: "https://i.pravatar.cc/150?img=5",
+                profileUrl: "#",
+              },
+              {
+                imageUrl: "https://i.pravatar.cc/150?img=8",
+                profileUrl: "#",
+              }
+            ]}
+          />
+        </div> 
+      )} 
+
       <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
         Welcome to Asshelp
       </h2>
@@ -93,7 +130,9 @@ export default function SignupFormDemo() {
           />
         </LabelInputContainer>
         {isSignUp && (
+       
           <LabelInputContainer className="mb-8">
+            
             <Label htmlFor="confirmpassword">Confirm password</Label>
             <Input
               id="confirmpassword"
