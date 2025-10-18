@@ -120,7 +120,7 @@ export default function BackgroundBoxesDemo() {
           }
         >
           <Image
-            src="/linear.webp"
+            src="/img1.png"       //Image, "linear.webp" is missing, added logo.png temporarily
             alt="hero"
             height={720}
             width={1400}
