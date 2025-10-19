@@ -28,6 +28,7 @@ export function UsageTracker() {
     }
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const updateUsage = (type: 'generation' | 'export') => {
     setUsage(prev => {
       const newUsage = {

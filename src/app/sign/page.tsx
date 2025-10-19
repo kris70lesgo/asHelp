@@ -5,7 +5,6 @@ import { Boxes } from "@/components/ui/background-boxes";
 import SignupFormDemo from "@/components/signup";
 import { AnimatePresence } from "framer-motion";
 import SignupPageSkeleton from "@/components/skeletons/signinPageSkeleton";
-import Navbar from "@/components/navbar1";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export default function SignupPage() {
@@ -28,8 +27,10 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center p-4">
+
       {/* Navbar */}
       <Navbar />
+
 
       {/* Loading Screen */}
       {isLoading && (

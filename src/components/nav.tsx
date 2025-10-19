@@ -27,10 +27,12 @@ export function NavbarDemo() {
       link: "/ai-generator",
     },
     {
+
       name: "About",
       link: "/about",
     },
     {
+
       name: "Contact",
       link: "",
     },

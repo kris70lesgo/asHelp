@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       htmlContent: content,
       filename: `${title || 'assignment'}.pdf`
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Export failed' }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json({ error: (error as Error).message || 'Export failed' }, { status: 500 });
   }
 }

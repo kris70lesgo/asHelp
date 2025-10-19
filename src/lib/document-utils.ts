@@ -1,4 +1,4 @@
-import { saveAs } from 'file-saver';
+﻿import { saveAs } from 'file-saver';
 import jsPDF from 'jspdf';
 
 // Helper function to convert image URL to base64
@@ -31,7 +31,6 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
     const lineHeight = 6;
     const margin = 15;
     
-<<<<<<< HEAD
     // Process each element including images
     const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li, img');
     
@@ -69,18 +68,6 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
       if (headingLevel) {
         const fontSize = Math.max(20 - parseInt(headingLevel) * 2, 12);
         pdf.setFontSize(fontSize);
-=======
-    // Process each paragraph and heading
-    const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li');
-    
-    elements.forEach((element) => {
-      const text = element.textContent?.trim();
-      if (!text) return;
-      
-      // Set font size based on element type
-      if (element.tagName.match(/^H[1-6]$/)) {
-        pdf.setFontSize(16);
->>>>>>> 744373a (ai powered assignment generator added)
         pdf.setFont('helvetica', 'bold');
       } else {
         pdf.setFontSize(12);
@@ -96,11 +83,7 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
       }
       
       // Add spacing before headings
-<<<<<<< HEAD
       if (headingLevel && yPosition > 20) {
-=======
-      if (element.tagName.match(/^H[1-6]$/) && yPosition > 20) {
->>>>>>> 744373a (ai powered assignment generator added)
         yPosition += 5;
       }
       
@@ -111,11 +94,7 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
       
       // Add spacing after paragraphs
       yPosition += 3;
-<<<<<<< HEAD
     }
-=======
-    });
->>>>>>> 744373a (ai powered assignment generator added)
     
     pdf.save(`${filename}.pdf`);
     return true;
@@ -125,11 +104,7 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
   }
 };
 
-<<<<<<< HEAD
 export const exportToWord = async (content: string, filename: string = 'assignment') => {
-=======
-export const exportToWord = (content: string, filename: string = 'assignment') => {
->>>>>>> 744373a (ai powered assignment generator added)
   try {
     // Parse HTML and create structured RTF
     const tempDiv = document.createElement('div');
@@ -137,7 +112,6 @@ export const exportToWord = (content: string, filename: string = 'assignment') =
     
     let rtfContent = '{\\rtf1\\ansi\\deff0 {\\fonttbl {\\f0 Times New Roman;}{\\f1 Arial;}} ';
     
-<<<<<<< HEAD
     // Process each element including images
     const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li, img');
     
@@ -151,14 +125,6 @@ export const exportToWord = (content: string, filename: string = 'assignment') =
       
       const text = element.textContent?.trim();
       if (!text) continue;
-=======
-    // Process each element
-    const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li');
-    
-    elements.forEach((element) => {
-      const text = element.textContent?.trim();
-      if (!text) return;
->>>>>>> 744373a (ai powered assignment generator added)
       
       // Clean text
       const cleanText = text
@@ -172,27 +138,16 @@ export const exportToWord = (content: string, filename: string = 'assignment') =
         .replace(/{/g, '\\{')
         .replace(/}/g, '\\}');
       
-<<<<<<< HEAD
       // Format based on element type with proper heading hierarchy
       const headingLevel = element.tagName.match(/^H([1-6])$/)?.[1];
       if (headingLevel) {
         const fontSize = Math.max(32 - parseInt(headingLevel) * 4, 20);
         rtfContent += `\\f1\\fs${fontSize}\\b ${cleanText}\\b0\\fs24\\par\\par `;
-=======
-      // Format based on element type
-      if (element.tagName.match(/^H[1-6]$/)) {
-        // Heading: bold, larger font
-        rtfContent += `\\f1\\fs28\\b ${cleanText}\\b0\\fs24\\par\\par `;
->>>>>>> 744373a (ai powered assignment generator added)
       } else {
         // Paragraph: normal text
         rtfContent += `\\f0\\fs24 ${cleanText}\\par\\par `;
       }
-<<<<<<< HEAD
     }
-=======
-    });
->>>>>>> 744373a (ai powered assignment generator added)
     
     rtfContent += '}';
     
@@ -213,3 +168,4 @@ export const formatContentForDisplay = (content: string): string => {
     .replace(/^/, '<p>')
     .replace(/$/, '</p>');
 };
+

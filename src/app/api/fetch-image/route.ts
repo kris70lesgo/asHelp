@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: 'No images found' }, { status: 404 });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Image fetch failed' }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json({ error: (error as Error).message || 'Image fetch failed' }, { status: 500 });
   }
 }

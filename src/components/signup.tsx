@@ -4,11 +4,9 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { IconBrandGoogle } from "@tabler/icons-react";
+import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react";
 import { supabase } from "@/lib/supabaseclient"; // Import your Supabase client
 import { AvatarCircles } from "./ui/avatar-circles";
-import { div } from "framer-motion/client";
-import { Sign } from "crypto";
 
 export default function SignupFormDemo() {
   const [email, setEmail] = useState("");
@@ -16,15 +14,18 @@ export default function SignupFormDemo() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordMatchError, setPasswordMatchError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
+    setPasswordMatchError("");
     try {
       if (isSignUp) {
         if (password !== confirmPassword) {
-          setErrorMsg("Passwords do not match");
+          setPasswordMatchError("Passwords do not match");
           return;
         }
         const { error } = await supabase.auth.signUp({
@@ -120,18 +121,45 @@ export default function SignupFormDemo() {
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            placeholder="••••••••"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="relative">
+            <Input
+              id="password"
+              placeholder="••••••••"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all duration-300 focus:outline-none group"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              <div className="relative w-5 h-5">
+                <IconEye 
+                  className={`absolute inset-0 h-5 w-5 transform transition-all duration-500 ease-out group-hover:scale-110 ${
+                    showPassword 
+                      ? 'opacity-0 rotate-180 scale-50' 
+                      : 'opacity-100 rotate-0 scale-100'
+                  }`}
+                />
+                <IconEyeOff 
+                  className={`absolute inset-0 h-5 w-5 transform transition-all duration-500 ease-out group-hover:scale-110 ${
+                    showPassword 
+                      ? 'opacity-100 rotate-0 scale-100' 
+                      : 'opacity-0 -rotate-180 scale-50'
+                  }`}
+                />
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/30 to-blue-500/30 dark:from-cyan-500/20 dark:to-blue-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg scale-150"></span>
+              </div>
+            </button>
+          </div>
         </LabelInputContainer>
         {isSignUp && (
        
-          <LabelInputContainer className="mb-8">
+          <LabelInputContainer className="mb-4">
             
             <Label htmlFor="confirmpassword">Confirm password</Label>
             <Input
@@ -139,9 +167,29 @@ export default function SignupFormDemo() {
               placeholder="••••••••"
               type="password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                // Check password match in real-time
+                if (e.target.value && password && e.target.value !== password) {
+                  setPasswordMatchError("Passwords do not match");
+                } else {
+                  setPasswordMatchError("");
+                }
+              }}
+              onBlur={() => {
+                // Check on blur as well
+                if (confirmPassword && password && confirmPassword !== password) {
+                  setPasswordMatchError("Passwords do not match");
+                }
+              }}
               required
+              className={passwordMatchError ? "border-red-500 focus:border-red-500" : ""}
             />
+            {passwordMatchError && (
+              <p className="text-xs text-red-500 mt-1 animate-in fade-in slide-in-from-top-1">
+                {passwordMatchError}
+              </p>
+            )}
           </LabelInputContainer>
         )}
         {errorMsg && (
