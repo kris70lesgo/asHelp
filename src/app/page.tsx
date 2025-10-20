@@ -84,14 +84,15 @@ export default function BackgroundBoxesDemo() {
           </button>
           {/* Heading + Flip Row */}
           <div className="flex flex-row flex-wrap items-center justify-center gap-1 w-full">
-            <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-semibold whitespace-nowrap">
-              Want help in
-            </h1>
-            <ContainerTextFlip
-              words={["Projects", "assignments", "Termwork", "PPT"]}
-              className="text-lg xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap"
-            />
-          </div>
+  <h1 className="text-xl xs:text-2xl sm:text-5xl md:text-6xl font-sans text-white font-semibold whitespace-nowrap">
+    Want help in
+  </h1>
+  <ContainerTextFlip
+    words={["Projects", "assignments", "TermWork", "PPT"]}
+    className="text-xl xs:text-3xl sm:text-5xl md:text-6xl font-sans text-black font-semibold ml-2 whitespace-nowrap"
+  />
+</div>
+
           {/* Description Row */}
           <div className="mt-2 text-gray-400 text-xs sm:text-lg max-w-xl">
             Get professional assignment writing services from verified experts. 100% AI-free, plagiarism-free content.
@@ -119,52 +120,76 @@ export default function BackgroundBoxesDemo() {
             </>
           }
         >
-          <Image
+          {/* <Image
             src="/linear.webp"
             alt="hero"
             height={720}
             width={1400}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
-          />
+          /> */}
+          <div className="relative w-full h-[720px] rounded-2xl overflow-hidden">
+    <video
+        className="absolute inset-0 w-fit h-fit object-cover"
+        src="asHelp_demo.mp4"  // <-- remove "public/" prefix
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+    >
+        Your browser does not support the video tag.
+    </video>
+</div>
         </ContainerScroll>
         
       </div>
       {/* 3 Steps Section */}
       <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
-        <div className="mb-2 text-center text-sm font-mono text-red-500 tracking-widest">HOW IT WORKS</div>
+       <div className="mb-4 text-center text-2xl sm:text-3xl font-bold font-mono text-red-400 tracking-[0.25em]">
+    HOW IT WORKS
+  </div>
         <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
         <div className="flex flex-col md:flex-row gap-10 md:gap-20 max-w-5xl mx-auto w-full justify-center items-start">
           {/* Step 1 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <UploadCloud size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">1. Upload Your Data</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
-            </div>
-          </div>
-          {/* Step 2 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <FileText size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">2. Click Start</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
-            </div>
-          </div>
-          {/* Step 3 */}
-          <div className="flex flex-row items-start gap-4 w-full md:w-1/3">
-            <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
-              <CreditCard size={36} />
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-white dark:text-white mb-1">3. Get Actionable Insights</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
-            </div>
-          </div>
+<div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+  <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+    <UploadCloud size={36} />
+  </span>
+  <div>
+    <h3 className="text-lg font-bold text-white mb-1">1. Upload Your Data</h3>
+    <p className="text-white/90 text-base">
+      Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.
+    </p>
+  </div>
+</div>
+
+{/* Step 2 */}
+<div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+  <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+    <FileText size={36} />
+  </span>
+  <div>
+    <h3 className="text-lg font-bold text-white mb-1">2. Click Start</h3>
+    <p className="text-white/90 text-base">
+      Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.
+    </p>
+  </div>
+</div>
+
+{/* Step 3 */}
+<div className="flex flex-row items-start gap-4 w-full md:w-1/3">
+  <span className="flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 text-3xl shrink-0">
+    <CreditCard size={36} />
+  </span>
+  <div>
+    <h3 className="text-lg font-bold text-white mb-1">3. Get Actionable Insights</h3>
+    <p className="text-white/90 text-base">
+      Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.
+    </p>
+  </div>
+</div>
+
         </div>
       </section>
       {/* End 3 Steps Section */}
