@@ -1,0 +1,60 @@
+/* Button.module.css - Converted for Next.js CSS Modules integration */
+
+/* Base CTA button */
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  color: white;
+}
+
+/* Text styling inside span */
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+/* SVG animation */
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+  fill: white;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+/* Underline animation on hover */
+.hoverUnderlineAnimation {
+  position: relative;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.hoverUnderlineAnimation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hoverUnderlineAnimation::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
