@@ -8,9 +8,11 @@ import AcademicHubSkeleton from "@/components/skeletons/dashboardPageSkeleton";
 import Image from "next/image";
 import styles from "./uiverseButton.module.css"; // Updated for CSS-module integration
 
+
 const AcademicHub = () => {
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -36,7 +38,6 @@ const AcademicHub = () => {
       originalPrice: 200,
       tag: "Best Seller",
       tagColor: "bg-amber-500",
-      tagColor: "bg-amber-500",
     },
     {
       id: 2,
@@ -50,7 +51,6 @@ const AcademicHub = () => {
       originalPrice: 400,
       tag: "New",
       tagColor: "bg-emerald-500",
-      tagColor: "bg-emerald-500",
     },
     {
       id: 3,
@@ -63,7 +63,6 @@ const AcademicHub = () => {
       price: 50,
       originalPrice: 100,
       tag: "Popular",
-      tagColor: "bg-blue-500",
       tagColor: "bg-blue-500",
     },
     {
@@ -79,8 +78,6 @@ const AcademicHub = () => {
       tag: "Free",
       tagColor: "bg-green-500",
     },
-      tagColor: "bg-green-500",
-    },
   ];
 
   const stats = [
@@ -91,7 +88,6 @@ const AcademicHub = () => {
     { number: "24/7", label: "Support" },
   ];
 
-  const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
   const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
 
   return (
