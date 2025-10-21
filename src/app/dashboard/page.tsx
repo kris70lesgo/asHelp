@@ -9,8 +9,6 @@ import Image from "next/image";
 import styles from "./uiverseButton.module.css"; // Updated for CSS-module integration
 
 const AcademicHub = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,6 +36,7 @@ const AcademicHub = () => {
       originalPrice: 200,
       tag: "Best Seller",
       tagColor: "bg-amber-500",
+      tagColor: "bg-amber-500",
     },
     {
       id: 2,
@@ -51,6 +50,7 @@ const AcademicHub = () => {
       originalPrice: 400,
       tag: "New",
       tagColor: "bg-emerald-500",
+      tagColor: "bg-emerald-500",
     },
     {
       id: 3,
@@ -63,6 +63,7 @@ const AcademicHub = () => {
       price: 50,
       originalPrice: 100,
       tag: "Popular",
+      tagColor: "bg-blue-500",
       tagColor: "bg-blue-500",
     },
     {
@@ -78,6 +79,8 @@ const AcademicHub = () => {
       tag: "Free",
       tagColor: "bg-green-500",
     },
+      tagColor: "bg-green-500",
+    },
   ];
 
   const stats = [
@@ -85,8 +88,10 @@ const AcademicHub = () => {
     { number: "5K+", label: "Projects Delivered" },
     { number: "98%", label: "Success Rate" },
     { number: "24/7", label: "Support" },
+    { number: "24/7", label: "Support" },
   ];
 
+  const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
   const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
 
   return (
@@ -216,3 +221,4 @@ const AcademicHub = () => {
 };
 
 export default AcademicHub;
+

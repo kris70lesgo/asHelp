@@ -6,10 +6,8 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from "motion/react";
-
+} from "framer-motion"; // ✅ corrected import path
 import React, { useRef, useState } from "react";
-
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -58,17 +56,12 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
+    setVisible(latest > 100);
   });
 
   return (
     <motion.div
       ref={ref}
-      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
       className={cn("fixed inset-x-0 top-4 z-40 w-full", className)}
     >
       {React.Children.map(children, (child) =>
@@ -88,7 +81,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     <motion.div
       animate={{
         backdropFilter: "blur(20px)",
-        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1) inset",
+        boxShadow:
+          "0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1) inset",
         width: visible ? "40%" : "100%",
         y: visible ? 20 : 0,
       }}
@@ -101,11 +95,13 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-white/10 px-4 py-2 lg:flex border border-white/20",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between rounded-full bg-white/10 px-4 py-2 lg:flex border border-white/20",
         className,
       )}
     >
-      {children}
+      <div className="flex w-full items-center justify-between">
+        {children}
+      </div>
     </motion.div>
   );
 };
@@ -114,10 +110,11 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <motion.div
+    <div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        // ✅ removed absolute/inset-0 — no more overlap
+        "hidden lg:flex flex-1 items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800",
         className,
       )}
     >
@@ -138,7 +135,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           <span className="relative z-20">{item.name}</span>
         </a>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
@@ -232,7 +229,6 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://assets.aceternity.com/logo-dark.png"
         alt="logo"
@@ -262,7 +258,7 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<"button">
 )) => {
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-md bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center flex-shrink-0"; // ✅ added flex-shrink-0
 
   const variantStyles = {
     primary:
