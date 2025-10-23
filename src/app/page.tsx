@@ -120,27 +120,15 @@ export default function BackgroundBoxesDemo() {
             </>
           }
         >
-          {/* <Image
+          <Image
             src="/linear.webp"
             alt="hero"
             height={720}
             width={1400}
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}
-          /> */}
-          <div className="relative w-full h-[720px] rounded-2xl overflow-hidden">
-    <video
-        className="absolute inset-0 w-fit h-fit object-cover"
-        src="asHelp_demo.mp4"  // <-- remove "public/" prefix
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-    >
-        Your browser does not support the video tag.
-    </video>
-</div>
+          />
+         
         </ContainerScroll>
         
       </div>
