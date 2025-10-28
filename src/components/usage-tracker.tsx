@@ -28,19 +28,19 @@ export function UsageTracker() {
     }
   }, []);
 
-  const updateUsage = (type: 'generation' | 'export') => {
-    setUsage(prev => {
-      const newUsage = {
-        ...prev,
-        ...(type === 'generation' 
-          ? { geminiUsage: prev.geminiUsage + 1 }
-          : { exportsToday: prev.exportsToday + 1 }
-        )
-      };
-      localStorage.setItem('ai-generator-usage', JSON.stringify(newUsage));
-      return newUsage;
-    });
-  };
+  // const updateUsage = (type: 'generation' | 'export') => {
+  //   setUsage(prev => {
+  //     const newUsage = {
+  //       ...prev,
+  //       ...(type === 'generation' 
+  //         ? { geminiUsage: prev.geminiUsage + 1 }
+  //         : { exportsToday: prev.exportsToday + 1 }
+  //       )
+  //     };
+  //     localStorage.setItem('ai-generator-usage', JSON.stringify(newUsage));
+  //     return newUsage;
+  //   });
+  // };
 
   const geminiPercentage = (usage.geminiUsage / usage.geminiLimit) * 100;
   const exportPercentage = (usage.exportsToday / usage.exportLimit) * 100;

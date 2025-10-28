@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import { supabase } from "@/lib/supabaseclient"; // Import your Supabase client
 import { AvatarCircles } from "./ui/avatar-circles";
-import { div } from "framer-motion/client";
-import { Sign } from "crypto";
 
 export default function SignupFormDemo() {
   const [email, setEmail] = useState("");
@@ -21,6 +19,12 @@ export default function SignupFormDemo() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
+    
+    if (!supabase) {
+      setErrorMsg("Authentication service is not available. Please check your configuration.");
+      return;
+    }
+    
     try {
       if (isSignUp) {
         if (password !== confirmPassword) {
@@ -49,6 +53,11 @@ export default function SignupFormDemo() {
   };
 
   const handleGoogleSignIn = async () => {
+    if (!supabase) {
+      setErrorMsg("Authentication service is not available. Please check your configuration.");
+      return;
+    }
+    
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",

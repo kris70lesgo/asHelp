@@ -60,6 +60,8 @@ function FormPaContent() {
   
     // Helper to upload file to Supabase Storage
     async function uploadFile(file: File) {
+      if (!supabase) throw new Error('Supabase client not available');
+      
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}.${fileExt}`;
       const { error } = await supabase.storage.from('uploads').upload(fileName, file);
@@ -71,6 +73,12 @@ function FormPaContent() {
   
     // Insert assignment into DB
     async function submitAssignment() {
+      if (!supabase) {
+        setError('Database service is not available. Please check your configuration.');
+        setLoading(false);
+        return;
+      }
+      
       setLoading(true);
       setError('');
       setSuccess(false);

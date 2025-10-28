@@ -6,6 +6,7 @@ import { NavbarDemo } from "@/components/nav";
 import { AnimatePresence } from 'framer-motion';
 import AcademicHubSkeleton from '@/components/skeletons/dashboardPageSkeleton';
 import Image from 'next/image';
+import Footer from '@/components/footer';
 
 
 const AcademicHub = () => {
@@ -267,53 +268,7 @@ const AcademicHub = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900/80 border-t border-slate-700/50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Company Info */}
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">A</span>
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Asshelp
-                </span>
-              </div>
-              <p className="text-slate-400 max-w-md">
-                Your trusted partner for academic excellence. Get premium assignments and projects delivered on time.
-              </p>
-            </div>
-
-            {/* Categories */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-4">Categories</h3>
-              <div className="space-y-2">
-                {categories.map((category) => (
-                  <a key={category} href="#" className="block text-slate-400 hover:text-white transition-colors">
-                    {category}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-4">Support</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors">Help Center</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors">Contact Us</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors">FAQ</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors">Live Chat</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-700/50 mt-8 pt-8 text-center text-slate-400">
-            <p>&copy; 2025 Asshelp. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       </div>
     </div>
   );
