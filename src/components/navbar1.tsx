@@ -25,7 +25,6 @@ const Navbar = () => {
             <span className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">Home</span>
           </Link>
           <Link href="#" className="hover:text-white transition-colors duration-200">Services</Link>
-          <Link href="#" className="hover:text-white transition-colors duration-200">About</Link>
           <Link href="#" className="hover:text-white transition-colors duration-200">Portfolio</Link>
           <Link href="#" className="hover:text-white transition-colors duration-200">Contact</Link>
         </div>
@@ -56,7 +55,6 @@ const Navbar = () => {
             <div className="px-6 pt-4 pb-6 space-y-3">
                 <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Home</Link>
                 <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Services</Link>
-                <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">About</Link>
                 <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Portfolio</Link>
                 <Link href="#" className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:bg-white/10 transition-colors">Contact</Link>
                 <Link href="/sign" className="block px-4 py-3 rounded-lg text-base font-semibold text-white bg-white/10 backdrop-blur-sm border border-white/20 text-center mt-4">Sign in</Link>
