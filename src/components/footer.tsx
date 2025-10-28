@@ -64,7 +64,7 @@ export default function Footer() {
                  height={40}
                  className="mr-3"
                />
-               <span className="text-xl sm:text-2xl font-bold text-white">AssHelp</span>
+               <span className="text-xl sm:text-2xl font-bold text-white">AsHelp</span>
              </div>
             <p className="text-gray-400 text-sm mb-6 max-w-xs">
               Get professional assignment writing services from verified experts. 
