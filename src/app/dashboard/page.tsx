@@ -91,13 +91,6 @@ const AcademicHub = () => {
     { number: "24/7", label: "Support" }
   ];
 
-  const categories = [
-    "Assignments",
-    "Projects", 
-    "Presentations",
-    "Termwork"
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-y-auto">
       {/* Loading Screen --- UPDATED SECTION */}

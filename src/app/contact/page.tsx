@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { Boxes } from "@/components/ui/background-boxes";
 import { NavbarDemo } from "@/components/nav";
 import { Label } from "@/components/ui/label";
@@ -8,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { AnimatePresence } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export default function ContactPage() {
@@ -52,7 +50,7 @@ export default function ContactPage() {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -98,7 +96,7 @@ export default function ContactPage() {
                 Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Touch</span>
               </h1>
               <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-                Have questions about our services? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                Have questions about our services? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
               </p>
             </div>
 

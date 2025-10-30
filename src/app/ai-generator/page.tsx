@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download, FileText, Loader2, Sparkles, Brain, Upload, X, Send, MessageSquare, Plus } from 'lucide-react';
+import { Download, FileText, Loader2, Sparkles, Upload, X, Send, MessageSquare, Plus } from 'lucide-react';
 import { exportToPDF, exportToWord } from '@/lib/document-utils';
 
 
@@ -140,8 +139,9 @@ export default function AIGenerator() {
       if (data.updatedContent) {
         setGeneratedContent(data.updatedContent);
       }
-    } catch {
-      setChatMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' }]);
+    } catch (error) {
+      const errorMsg = (error as Error).message || 'Unknown error';
+      setChatMessages(prev => [...prev, { role: 'assistant', content: `Sorry, I encountered an error: ${errorMsg}. Please try again.` }]);
     } finally {
       setIsChatting(false);
     }
