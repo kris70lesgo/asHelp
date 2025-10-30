@@ -12,9 +12,7 @@ import { AnimatePresence } from "framer-motion";
 import HomePageSkeleton from "@/components/skeletons/homePageSkeleton";
 import Footer from "@/components/footer";
 
-
-
-export default function BackgroundBoxesDemo() {
+export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
@@ -33,7 +31,7 @@ export default function BackgroundBoxesDemo() {
     // Simulate loading time for components
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 4000); // Show loader for 4 seconds to see the animation properly
+    }, 2000); // Reduced loading time
 
     return () => clearTimeout(timer);
   }, [mounted]);
@@ -49,7 +47,7 @@ export default function BackgroundBoxesDemo() {
 
   return (
     <div className="relative bg-slate-900">
-      {/* Loading Screen --- UPDATED SECTION */}
+      {/* Loading Screen */}
       <AnimatePresence>
         {isLoading && <HomePageSkeleton />}
       </AnimatePresence>
@@ -112,7 +110,6 @@ export default function BackgroundBoxesDemo() {
           titleComponent={
             <>
               <h2 className="text-4xl font-semibold text-black dark:text-white">
-                
                 <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                   
                 </span>
@@ -121,6 +118,7 @@ export default function BackgroundBoxesDemo() {
           }
         >
           <Image
+            src="/homepage.png"
             src="/hero-image.png"
             alt="hero"
             height={720}
@@ -133,6 +131,7 @@ export default function BackgroundBoxesDemo() {
       </div>
       {/* 3 Steps Section */}
       <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
+        <div className="mb-5 text-center text-2xl font-mono font-bold text-red-500 tracking-widest">HOW IT WORKS</div>
         <div className="mb-2 text-center text-sm font-mono text-green-500 tracking-widest">HOW IT WORKS</div>
         <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
         <div className="w-[90%] lg:w-[75%] mx-auto grid grid-col-1 lg:grid-cols-3 gap-10">
@@ -143,6 +142,7 @@ export default function BackgroundBoxesDemo() {
             </span>
             <div>
               <h3 className="text-lg font-bold text-white dark:text-white mb-1">1. Upload Your Data</h3>
+              <p className="text-gray-300 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
               <p className="text-gray-500 group-hover:text-gray-400 dark:text-gray-300 text-base">Simply upload your data to our secure platform. We support various file formats and data types to ensure a seamless integration with your existing systems.</p>
             </div>
           </div>
@@ -153,6 +153,7 @@ export default function BackgroundBoxesDemo() {
             </span>
             <div>
               <h3 className="text-lg font-bold text-white dark:text-white mb-1">2. Click Start</h3>
+              <p className="text-gray-300 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
               <p className="text-gray-500 group-hover:text-gray-400 dark:text-gray-300 text-base">Our advanced AI algorithms automatically process and analyze your data, extracting valuable insights and patterns that would be difficult to identify manually.</p>
             </div>
           </div>
@@ -163,6 +164,7 @@ export default function BackgroundBoxesDemo() {
             </span>
             <div>
               <h3 className="text-lg font-bold text-white dark:text-white mb-1">3. Get Actionable Insights</h3>
+              <p className="text-gray-300 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
               <p className="text-gray-500 group-hover:text-gray-400 dark:text-gray-300 text-base">Receive clear, actionable insights and recommendations based on the AI analysis. Use these insights to make data-driven decisions and improve your business strategies.</p>
             </div>
           </div>
@@ -170,6 +172,8 @@ export default function BackgroundBoxesDemo() {
       </section>
       {/* End 3 Steps Section */}
       <TestimonialMarquee/>
+      
+      {/* Footer */}
       <Footer />
     </div>
   );

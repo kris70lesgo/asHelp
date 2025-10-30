@@ -1,13 +1,15 @@
 "use client";
-
-import React, { useState, useEffect, useRef } from "react";
-import { Star, Clock, Filter } from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, useRef } from 'react';
+import { Star, Clock, Filter } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { NavbarDemo } from "@/components/nav";
 import { AnimatePresence } from "framer-motion";
 import AcademicHubSkeleton from "@/components/skeletons/dashboardPageSkeleton";
 import { MOCK_PROJECTS } from "@/data/mockProjects";
+import { AnimatePresence } from 'framer-motion';
+import AcademicHubSkeleton from '@/components/skeletons/dashboardPageSkeleton';
+import Image from 'next/image';
+import Footer from '@/components/footer';
 
 const MagicCard = ({
   children,
@@ -375,6 +377,8 @@ const AcademicHub = () => {
             </div>
           </div>
         </footer>
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );

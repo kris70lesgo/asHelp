@@ -10,7 +10,6 @@ interface TestimonialCard {
 }
 
 const testimonials: TestimonialCard[] = [
-  
   {
     "id": 1,
     "name": "Hitesh",
@@ -66,6 +65,34 @@ const testimonials: TestimonialCard[] = [
     "username": "@anst",
     "content": "Lowkey didn't think they'd pull it off but they nailed it.",
     "avatar": "https://avatar.vercel.sh/james"
+  },
+  {
+    "id": 9,
+    "name": "Rahul",
+    "username": "@rahul",
+    "content": "Best service ever! Got my assignment done in time with amazing quality.",
+    "avatar": "https://avatar.vercel.sh/rahul"
+  },
+  {
+    "id": 10,
+    "name": "Priya",
+    "username": "@priya",
+    "content": "Professional work, delivered exactly what I needed. Highly recommended!",
+    "avatar": "https://avatar.vercel.sh/priya"
+  },
+  {
+    "id": 11,
+    "name": "Arjun",
+    "username": "@arjun",
+    "content": "Saved my grades with their excellent assignment help. Thank you!",
+    "avatar": "https://avatar.vercel.sh/arjun"
+  },
+  {
+    "id": 12,
+    "name": "Kavya",
+    "username": "@kavya",
+    "content": "Fast delivery and top-notch quality. Will definitely use again.",
+    "avatar": "https://avatar.vercel.sh/kavya"
   }
 ];
 
@@ -89,14 +116,14 @@ const TestimonialCard: React.FC<{ testimonial: TestimonialCard }> = ({ testimoni
 };
 
 const TestimonialMarquee: React.FC = () => {
-  const firstRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
-  const secondRow = testimonials.slice(Math.ceil(testimonials.length / 2));
+  // Duplicate testimonials to ensure continuous scrolling without empty slots
+  const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+  const firstRow = extendedTestimonials.slice(0, Math.ceil(extendedTestimonials.length / 2));
+  const secondRow = extendedTestimonials.slice(Math.ceil(extendedTestimonials.length / 2));
 
   return (
     <div className="w-full bg-gradient-to-br  #0A0F1F py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4">
-        
-
+      <div className="w-full">
         <div className="space-y-8">
           {/* First row - left to right */}
           <Marquee
@@ -105,8 +132,8 @@ const TestimonialMarquee: React.FC = () => {
             pauseOnHover={true}
             className="overflow-hidden"
           >
-            {firstRow.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            {firstRow.map((testimonial, index) => (
+              <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
             ))}
           </Marquee>
 
@@ -118,8 +145,8 @@ const TestimonialMarquee: React.FC = () => {
             pauseOnHover={true}
             className="overflow-hidden"
           >
-            {secondRow.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            {secondRow.map((testimonial, index) => (
+              <TestimonialCard key={`${testimonial.id}-${index}`} testimonial={testimonial} />
             ))}
           </Marquee>
         </div>
