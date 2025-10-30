@@ -33,6 +33,7 @@ export function NavbarDemo() {
     },
     {
       name: "Contact",
+      link: "/contact-form",
       link: "/contact",
     },
   ];

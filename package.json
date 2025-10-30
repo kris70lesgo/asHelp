@@ -41,6 +41,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-fast-marquee": "^1.6.5",
+    "react-router-dom": "^7.9.4",
     "react-use-measure": "^2.1.7",
     "tailwind-merge": "^3.3.1"
   },

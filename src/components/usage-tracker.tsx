@@ -22,6 +22,7 @@ export function UsageTracker() {
 
   useEffect(() => {
     // Load usage from localStorage
+    
     const savedUsage = localStorage.getItem('ai-generator-usage');
     if (savedUsage) {
       setUsage(JSON.parse(savedUsage));
