@@ -21,6 +21,12 @@ export default function SignupFormDemo() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
+    
+    if (!supabase) {
+      setErrorMsg("Authentication service is not available. Please check your configuration.");
+      return;
+    }
+    
     setPasswordMatchError("");
     try {
       if (isSignUp) {
@@ -50,6 +56,11 @@ export default function SignupFormDemo() {
   };
 
   const handleGoogleSignIn = async () => {
+    if (!supabase) {
+      setErrorMsg("Authentication service is not available. Please check your configuration.");
+      return;
+    }
+    
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",

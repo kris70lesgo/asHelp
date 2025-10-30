@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -7,11 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download, FileText, Loader2, Sparkles, Brain, Upload, X, Send, MessageSquare, Plus } from 'lucide-react';
+import { Download, FileText, Loader2, Sparkles, Upload, X, Send, MessageSquare, Plus, Brain } from 'lucide-react';
 import { exportToPDF, exportToWord } from '@/lib/document-utils';
 
 
 import Aurora from '@/components/Backgrounds/Aurora';
+import { NavbarDemo } from '@/components/nav';
+import Footer from '@/components/footer';
 
 export default function AIGenerator() {
   const [formData, setFormData] = useState({
@@ -95,7 +97,6 @@ export default function AIGenerator() {
       setGeneratedContent(cleanContent);
       setStatusMessage({type: 'success', text: 'Assignment generated successfully!'});
       setChatMessages([]);
-      setShowChat(true);
       
       updateUsage('generation');
     } catch (error) {
@@ -133,16 +134,16 @@ export default function AIGenerator() {
       });
       
       const data = await response.json();
-      if (data.error) throw new Error(data.error);
+      if (data.error) throw new Error(data.error as string);
       
       // Add assistant response and update content if modified
       setChatMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
       if (data.updatedContent) {
         setGeneratedContent(data.updatedContent);
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      setChatMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' }]);
+      const errorMsg = (error as Error).message || 'Unknown error';
+      setChatMessages(prev => [...prev, { role: 'assistant', content: `Sorry, I encountered an error: ${errorMsg}. Please try again.` }]);
     } finally {
       setIsChatting(false);
     }
@@ -185,6 +186,8 @@ export default function AIGenerator() {
 
   return (
     <div className="relative bg-slate-900 min-h-screen">
+      {/* Navbar */}
+      <NavbarDemo />
       {/* Simple Header */}
       <div className="relative z-10 bg-slate-900/50 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -211,7 +214,7 @@ export default function AIGenerator() {
         />
       </div>
       
-      <div className="relative z-10 pt-20 pb-16">
+      <div className="relative z-10 pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4">
           {/* Hero Section */}
           <div className="text-center mb-12">
@@ -263,6 +266,7 @@ export default function AIGenerator() {
                     onChange={(e) => setFormData({...formData, topic: e.target.value})}
                     placeholder="Enter assignment topic"
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                    suppressHydrationWarning
                   />
                 </div>
                 
@@ -274,6 +278,7 @@ export default function AIGenerator() {
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     placeholder="e.g., Computer Science, History"
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                    suppressHydrationWarning
                   />
                 </div>
                 
@@ -344,6 +349,7 @@ export default function AIGenerator() {
                       onChange={(e) => setFormData({...formData, imageQuery: e.target.value})}
                       placeholder="e.g., sunflower, DNA structure, solar system"
                       className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                      suppressHydrationWarning
                     />
                   </div>
                 )}
@@ -487,6 +493,7 @@ export default function AIGenerator() {
                           <div className="text-center text-white/60 py-8">
                             <MessageSquare className="mx-auto h-8 w-8 mb-2 opacity-50" />
                             <p className="text-sm">Ask me to modify your assignment!</p>
+                            <p className="text-xs mt-1 opacity-75">Try: &quot;Make it shorter&quot; or &quot;Add examples&quot;</p>
                             <p className="text-xs mt-1 opacity-75">Try: &ldquo;Make it shorter&rdquo; or &ldquo;Add examples&rdquo;</p>
                           </div>
                         ) : (
@@ -520,6 +527,7 @@ export default function AIGenerator() {
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/60 text-sm"
                           onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleChatSubmit()}
                           disabled={isChatting}
+                          suppressHydrationWarning
                         />
                         <Button 
                           onClick={handleChatSubmit}
@@ -538,6 +546,9 @@ export default function AIGenerator() {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
