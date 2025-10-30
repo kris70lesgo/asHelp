@@ -23,5 +23,6 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: unknown) {
     return NextResponse.json({ error: error instanceof Error ? error.message : 'Export failed' }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message || 'Export failed' }, { status: 500 });
   }
 }

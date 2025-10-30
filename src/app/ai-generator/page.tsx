@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download, FileText, Loader2, Sparkles, Upload, X, Send, MessageSquare, Plus } from 'lucide-react';
+import { Download, FileText, Loader2, Sparkles, Upload, X, Send, MessageSquare, Plus, Brain } from 'lucide-react';
 import { exportToPDF, exportToWord } from '@/lib/document-utils';
 
 
@@ -33,6 +33,8 @@ export default function AIGenerator() {
   const [chatMessages, setChatMessages] = useState<{role: 'user' | 'assistant', content: string}[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [isChatting, setIsChatting] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showChat, setShowChat] = useState(false);
 
   const getUsage = () => {
     const saved = localStorage.getItem('ai-generator-usage');
@@ -186,6 +188,21 @@ export default function AIGenerator() {
     <div className="relative bg-slate-900 min-h-screen">
       {/* Navbar */}
       <NavbarDemo />
+      {/* Simple Header */}
+      <div className="relative z-10 bg-slate-900/50 backdrop-blur-sm border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Brain className="h-6 w-6 text-purple-400" />
+              <span className="text-white font-semibold text-lg">AsHelp AI</span>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/" className="text-white hover:text-purple-400 transition-colors">
+              ← Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
       
       {/* Aurora Background */}
       <div className="fixed inset-0 z-0">
@@ -221,7 +238,7 @@ export default function AIGenerator() {
                     onClick={() => setStatusMessage(null)}
                     className="text-white/60 hover:text-white"
                   >
-                    ×
+                    ├ù
                   </button>
                 </div>
               </div>
@@ -477,6 +494,7 @@ export default function AIGenerator() {
                             <MessageSquare className="mx-auto h-8 w-8 mb-2 opacity-50" />
                             <p className="text-sm">Ask me to modify your assignment!</p>
                             <p className="text-xs mt-1 opacity-75">Try: &quot;Make it shorter&quot; or &quot;Add examples&quot;</p>
+                            <p className="text-xs mt-1 opacity-75">Try: &ldquo;Make it shorter&rdquo; or &ldquo;Add examples&rdquo;</p>
                           </div>
                         ) : (
                           chatMessages.map((msg, idx) => (
@@ -534,3 +552,4 @@ export default function AIGenerator() {
     </div>
   );
 }
+
