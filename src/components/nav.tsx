@@ -15,20 +15,26 @@ import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars'
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseclient";
 import type { User } from '@supabase/supabase-js';
+import Link from "next/link";
 
 export function NavbarDemo() {
   const navItems = [
     {
       name: "Features",
-      link: "",
+      link: "/#features",
     },
     {
       name: "AI Generator",
       link: "/ai-generator",
     },
     {
+      name: "Dashboard",
+      link: "/dashboard",
+    },
+    {
       name: "Contact",
       link: "/contact-form",
+      link: "/contact",
     },
   ];
 
@@ -37,13 +43,15 @@ export function NavbarDemo() {
   const router = useRouter();
 
   useEffect(() => {
+    if (!supabase) return;
+    
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase!.auth.getUser();
       setUser(user);
     };
     getUser();
     // Listen for auth state changes
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: listener } = supabase!.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
     return () => {
@@ -57,7 +65,9 @@ export function NavbarDemo() {
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems items={navItems} />
+          <div className="flex items-center justify-center flex-1">
+            <NavItems items={navItems} />
+          </div>
           <div className="flex items-center gap-4">
             <GitHubStarsButton username="kris70lesgo" repo="s1" />
             {user === null && (
@@ -81,14 +91,14 @@ export function NavbarDemo() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="relative text-black dark:text-black"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
               {user === null && (

@@ -62,12 +62,8 @@ export async function POST(req: NextRequest) {
     
     for (const [, file] of files) {
       if (file instanceof File) {
-        try {
-          const text = await file.text();
-          fileContent += `\n\nReference from ${file.name}:\n${text}\n`;
-        } catch (error) {
-          console.error(`Failed to read file ${file.name}:`, error);
-        }
+        const text = await file.text();
+        fileContent += `\n--- Content from ${file.name} ---\n${text}\n\n`;
       }
     }
 
@@ -76,6 +72,8 @@ export async function POST(req: NextRequest) {
     const prompt = `Generate a comprehensive academic assignment on "${topic}" for ${subject} at ${level || 'undergraduate'} level. 
     Target word count: ${wordCount || 1000} words.
     ${requirements ? `Additional requirements: ${requirements}` : ''}
+    ${fileContent ? `\nReference materials:\n${fileContent}` : ''}
+
     ${fileContent ? `\n\nReference materials provided:\n${fileContent}\n\nPlease incorporate relevant information from these reference materials into the assignment.` : ''}
     
     Structure the assignment with:
@@ -85,6 +83,29 @@ export async function POST(req: NextRequest) {
     4. Conclusion
     5. References (if applicable)
     
+    Format the response as structured HTML with proper headings, paragraphs, and formatting.`;
+
+    const result = await model.generateContent(prompt);
+    const content = result.response.text();
+
+    // Fetch image if requested
+    let finalContent = content;
+    if (includeImages && imageQuery) {
+      const imageData = await fetchRelevantImage(imageQuery);
+      if (imageData) {
+        finalContent = `<div style="text-align: center; margin: 20px 0;">
+          <img src="${imageData.url}" alt="${imageData.alt}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>\n${content}`;
+      }
+    }
+
+    return NextResponse.json({ content: finalContent });
+  } catch (error: unknown) {
+    console.error('Assignment generation failed:', error);
+    const errorObj = error as Error;
+    const errorMessage = errorObj.message?.includes('limit') || errorObj.message?.includes('quota')
+      ? 'Your limit for today has exceeded. Please try again tomorrow.'
+      : errorObj.message || 'Assignment generation failed';
     ${includeImages ? `Also suggest 1 relevant image search term that would enhance this assignment. Use the main topic "${topic}" as the search term unless a more specific term would be better. Add this term as a JSON array in an HTML comment at the very end: <!-- ["term1"] -->` : ''}
     
     Format the response as structured HTML with proper headings, paragraphs, and formatting.`;

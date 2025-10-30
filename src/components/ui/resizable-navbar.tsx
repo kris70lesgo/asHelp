@@ -113,6 +113,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <div
       onMouseLeave={() => setHovered(null)}
       className={cn(
+        "flex flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800",
         // ✅ removed absolute/inset-0 — no more overlap
         "hidden lg:flex flex-1 items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800",
         className,
@@ -122,7 +123,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-black dark:text-black"
+          className="relative px-4 py-2 text-black dark:text-black whitespace-nowrap"
           key={`link-${idx}`}
           href={item.link}
         >
@@ -235,7 +236,7 @@ export const NavbarLogo = () => {
         width={30}
         height={30}
       />
-      <span className="font-medium text-black dark:text-white">AssHelp</span>
+      <span className="font-medium text-black dark:text-white">AsHelp</span>
     </a>
   );
 };

@@ -20,6 +20,12 @@ const getImageAsBase64 = async (url: string): Promise<string | null> => {
 
 export const exportToPDF = async (content: string, filename: string = 'assignment') => {
   try {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      console.error('PDF export only works in browser environment');
+      return false;
+    }
+    
     const pdf = new jsPDF();
     
     // Parse HTML and extract structured content
@@ -34,39 +40,36 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
     // Process each element including images
     const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li, img');
     
-    for (const element of elements) {
+    for (const element of Array.from(elements)) {
+      const text = element.textContent?.trim() || '';
+      if (!text && element.tagName !== 'IMG') continue;
+      
+      // Handle images
       if (element.tagName === 'IMG') {
         const img = element as HTMLImageElement;
-        const downloadUrl = img.getAttribute('data-download-url') || img.src;
+        const imgUrl = img.src;
         
-        try {
-          const base64 = await getImageAsBase64(downloadUrl);
-          if (base64) {
-            // Check if we need a new page for the image
-            if (yPosition + 60 > pageHeight - 20) {
-              pdf.addPage();
-              yPosition = 20;
+        if (imgUrl && (imgUrl.startsWith('http') || imgUrl.startsWith('data:'))) {
+          const base64 = await getImageAsBase64(imgUrl);
+          if (base64 && yPosition < pageHeight - 60) {
+            try {
+              pdf.addImage(base64, 'PNG', margin, yPosition, 150, 100);
+              yPosition += 110;
+            } catch (error) {
+              console.error('Failed to add image to PDF:', error);
             }
-            
-            // Add image (scaled to fit)
-            const imgWidth = 160;
-            const imgHeight = 90;
-            pdf.addImage(base64, 'JPEG', margin, yPosition, imgWidth, imgHeight);
-            yPosition += imgHeight + 10;
           }
-        } catch (error) {
-          console.error('Failed to add image to PDF:', error);
         }
         continue;
       }
       
-      const text = element.textContent?.trim();
-      if (!text) continue;
+      // Get heading level
+      const headingMatch = element.tagName.match(/^H([1-6])$/);
+      const headingLevel = headingMatch ? parseInt(headingMatch[1]) : null;
       
-      // Set font size based on element type with proper heading hierarchy
-      const headingLevel = element.tagName.match(/^H([1-6])$/)?.[1];
+      // Set font size based on element type
       if (headingLevel) {
-        const fontSize = Math.max(20 - parseInt(headingLevel) * 2, 12);
+        const fontSize = Math.max(20 - parseInt(headingLevel.toString()) * 2, 12);
         pdf.setFontSize(fontSize);
         pdf.setFont('helvetica', 'bold');
       } else {
@@ -106,12 +109,23 @@ export const exportToPDF = async (content: string, filename: string = 'assignmen
 
 export const exportToWord = async (content: string, filename: string = 'assignment') => {
   try {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      console.error('Word export only works in browser environment');
+      return false;
+    }
+    
     // Parse HTML and create structured RTF
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = content.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
     
     let rtfContent = '{\\rtf1\\ansi\\deff0 {\\fonttbl {\\f0 Times New Roman;}{\\f1 Arial;}} ';
     
+    const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li');
+    
+    elements.forEach((element) => {
+      const text = element.textContent?.trim() || '';
+      if (!text) return;
     // Process each element including images
     const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li, img');
     
@@ -138,6 +152,11 @@ export const exportToWord = async (content: string, filename: string = 'assignme
         .replace(/{/g, '\\{')
         .replace(/}/g, '\\}');
       
+      // Check if it's a heading
+      if (element.tagName.match(/^H[1-6]$/)) {
+        const level = element.tagName.charAt(1);
+        const fontSize = 24 - parseInt(level) * 2;
+        rtfContent += `\\f0\\fs${fontSize} ${cleanText}\\par\\par `;
       // Format based on element type with proper heading hierarchy
       const headingLevel = element.tagName.match(/^H([1-6])$/)?.[1];
       if (headingLevel) {
@@ -147,6 +166,7 @@ export const exportToWord = async (content: string, filename: string = 'assignme
         // Paragraph: normal text
         rtfContent += `\\f0\\fs24 ${cleanText}\\par\\par `;
       }
+    });
     }
     
     rtfContent += '}';
