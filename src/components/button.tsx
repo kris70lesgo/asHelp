@@ -1,4 +1,4 @@
-'use client';
+d 'use client';
 import React from "react";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,7 @@ const TailwindConnectButton = ({ children = null, ...props }: React.PropsWithChi
   };
   return (
     <button
-      className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-lg font-semibold leading-6 text-white inline-block"
+      className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-1 text-sm font-semibold leading-6 text-white inline-block"
       onClick={handleClick}
       {...props}
     >
