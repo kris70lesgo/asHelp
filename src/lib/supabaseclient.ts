@@ -1,3 +1,5 @@
+// src/lib/supabaseclient.ts
+
 import { createClient } from '@supabase/supabase-js'
 
 // You can use environment variables for safety
