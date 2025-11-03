@@ -15,10 +15,15 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(`${origin}/sign?error=configuration`)
     }
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        flowType: 'pkce'
+      }
+    })
     
     try {
-      await supabase.auth.exchangeCodeForSession(code)
+      const { error } = await supabase.auth.exchangeCodeForSession(code)
+      if (error) throw error
     } catch (error) {
       console.error('Error exchanging code for session:', error)
       return NextResponse.redirect(`${origin}/sign?error=auth_failed`)
