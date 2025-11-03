@@ -41,4 +41,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.eslintcache.env.local
+# cache files
+.eslintcache

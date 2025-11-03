@@ -80,7 +80,14 @@
 4. **Supabase Setup**
    
    - Create a new project at [Supabase Dashboard](https://supabase.com/dashboard)
-   - Enable Authentication providers (Email, etc.)
+   - Enable Authentication providers:
+     * Go to Authentication > Providers
+     * Enable Email provider
+     * Enable Google OAuth provider and configure with your Google OAuth credentials
+   - Configure Authentication URLs:
+     * Go to Authentication > URL Configuration
+     * Add your Site URL (e.g., `https://your-domain.com` or `http://localhost:3000`)
+     * Add Redirect URL: `https://your-domain.com/auth/callback` (or `http://localhost:3000/auth/callback` for development)
    - Create storage bucket: `assignments`
 
 5. **Run the development server**
