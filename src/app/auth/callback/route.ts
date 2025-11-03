@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
     if (!supabaseUrl || !supabaseAnonKey) {
-      return NextResponse.redirect(`${origin}/sign?error=configuration`)
+      return NextResponse.redirect(`${origin}/sign?error=missing_env_vars`)
     }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey, {
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
       if (error) throw error
     } catch (error) {
       console.error('Error exchanging code for session:', error)
-      return NextResponse.redirect(`${origin}/sign?error=auth_failed`)
+      return NextResponse.redirect(`${origin}/sign?error=code_exchange_failed`)
     }
   }
 
