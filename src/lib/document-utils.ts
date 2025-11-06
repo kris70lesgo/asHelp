@@ -126,19 +126,6 @@ export const exportToWord = async (content: string, filename: string = 'assignme
     elements.forEach((element) => {
       const text = element.textContent?.trim() || '';
       if (!text) return;
-    // Process each element including images
-    const elements = tempDiv.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, li, img');
-    
-    for (const element of elements) {
-      if (element.tagName === 'IMG') {
-        const img = element as HTMLImageElement;
-        // Add placeholder text for images in RTF (RTF image embedding is complex)
-        rtfContent += `\\f0\\fs20\\i [Image: ${img.alt || 'Diagram'}]\\i0\\par\\par `;
-        continue;
-      }
-      
-      const text = element.textContent?.trim();
-      if (!text) continue;
       
       // Clean text
       const cleanText = text
@@ -157,17 +144,11 @@ export const exportToWord = async (content: string, filename: string = 'assignme
         const level = element.tagName.charAt(1);
         const fontSize = 24 - parseInt(level) * 2;
         rtfContent += `\\f0\\fs${fontSize} ${cleanText}\\par\\par `;
-      // Format based on element type with proper heading hierarchy
-      const headingLevel = element.tagName.match(/^H([1-6])$/)?.[1];
-      if (headingLevel) {
-        const fontSize = Math.max(32 - parseInt(headingLevel) * 4, 20);
-        rtfContent += `\\f1\\fs${fontSize}\\b ${cleanText}\\b0\\fs24\\par\\par `;
       } else {
         // Paragraph: normal text
         rtfContent += `\\f0\\fs24 ${cleanText}\\par\\par `;
       }
     });
-    }
     
     rtfContent += '}';
     

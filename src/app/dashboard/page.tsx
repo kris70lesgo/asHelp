@@ -51,6 +51,8 @@ const MagicCard = ({
           }}
         />
       )}
+
+      {/* Inner glow effect */}
       {isHovered && (
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -66,6 +68,7 @@ const MagicCard = ({
 
 const AcademicHub = () => {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -169,6 +172,7 @@ const AcademicHub = () => {
     { number: "24/7", label: "Support" },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
 
   return (
