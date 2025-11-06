@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +15,15 @@ const Navbar = () => {
         
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Link href="/" className="text-white text-2xl font-bold">
-            Logo
+          <Link href="/" className="flex items-center space-x-2">
+            <Image 
+              src="/logo.png" 
+              alt="AsHelp Logo" 
+              width={24} 
+              height={24}
+              className="rounded-md"
+            />
+            <span className="text-white text-2xl font-bold">AsHelp</span>
           </Link>
         </div>
 

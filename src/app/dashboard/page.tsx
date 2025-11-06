@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Star, Clock, Filter } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { NavbarDemo } from "@/components/nav";
@@ -38,23 +38,7 @@ const MagicCard = ({
       className={`relative overflow-hidden ${className}`}
       style={{ position: "relative" }}
     >
-      {/* Border highlight effect */}
-      {isHovered && (
-        <div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139, 92, 246, 0.4), transparent 40%)`,
-            maskImage:
-              "linear-gradient(black, black) content-box, linear-gradient(black, black)",
-            maskComposite: "exclude",
-            WebkitMaskImage:
-              "linear-gradient(black, black) content-box, linear-gradient(black, black)",
-            WebkitMaskComposite: "xor",
-            padding: "1px",
-            borderRadius: "inherit",
-          }}
-        />
-      )}
+
       {/* Inner glow effect */}
       {isHovered && (
         <div
@@ -71,6 +55,7 @@ const MagicCard = ({
 
 const AcademicHub = () => {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
 
   const featuredProjects = [
@@ -135,6 +120,7 @@ const AcademicHub = () => {
     { number: "24/7", label: "Support" },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const categories = ["Assignments", "Projects", "Presentations", "Termwork"];
 
   return (

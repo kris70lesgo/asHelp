@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("[verify] error:", err);
     return NextResponse.json({ error: "verify_failed" }, { status: 500 });
   }
