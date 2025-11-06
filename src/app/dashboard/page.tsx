@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Star, Clock, Filter } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { NavbarDemo } from "@/components/nav";
@@ -69,7 +69,8 @@ const AcademicHub = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allProjects = [
+  // Core projects without duplicates
+  const coreProjects = [
     {
       id: 1,
       title: "Assignment-Med",
@@ -126,6 +127,11 @@ const AcademicHub = () => {
       tagColor: "bg-green-500",
       tags: ["ai", "generator", "free", "instant"],
     },
+  ];
+
+  // Combine with mock projects (starting from id 5 to avoid duplicates)
+  const allProjects = [
+    ...coreProjects,
     ...MOCK_PROJECTS.map((project, index) => ({
       id: index + 5,
       title: project.title,
@@ -137,9 +143,10 @@ const AcademicHub = () => {
       price: project.price,
       originalPrice: project.price * 2,
       tag: project.badge || "Available",
-      tagColor: project.badge === "Best Seller" ? "bg-amber-500" : 
-                project.badge === "New" ? "bg-emerald-500" : 
-                project.badge === "Popular" ? "bg-blue-500" : "bg-gray-500",
+      tagColor: 
+        project.badge === "Best Seller" ? "bg-amber-500" : 
+        project.badge === "New" ? "bg-emerald-500" : 
+        project.badge === "Popular" ? "bg-blue-500" : "bg-gray-500",
       tags: project.tags,
     }))
   ];
@@ -171,8 +178,11 @@ const AcademicHub = () => {
       <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"}>
         <NavbarDemo searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+        {/* Hero Section with Gradient Background extending from top */}
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden pt-32">
+          {/* Gradient Background - extends to cover navbar area */}
+          <div className="absolute inset-0 -top-20 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+          
           <div className="relative max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Premium Academic{" "}
