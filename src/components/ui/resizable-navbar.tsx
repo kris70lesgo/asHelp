@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion"; // ✅ corrected import path
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -226,18 +227,19 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
+        src="/logo.png"
+        alt="AsHelp Logo"
+        width={24}
+        height={24}
+        className="rounded-md"
       />
-      <span className="font-medium text-black dark:text-white">AsHelp</span>
-    </a>
+      <span className="font-bold text-black dark:text-white text-lg">AsHelp</span>
+    </Link>
   );
 };
 

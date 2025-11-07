@@ -3,6 +3,10 @@ import { razorpay } from "@/lib/razorpay";
 
 export async function POST(req: Request) {
   try {
+    if (!razorpay) {
+      return NextResponse.json({ error: "Razorpay not configured" }, { status: 503 });
+    }
+    
     const { amount, receipt } = await req.json();
     // amount should be in INR paise (₹1 = 100)
     if (!amount) return NextResponse.json({ error: "amount required" }, { status: 400 });
@@ -14,7 +18,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ order });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("[create-order] error:", err);
     return NextResponse.json({ error: "failed_to_create_order" }, { status: 500 });
   }

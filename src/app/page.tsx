@@ -120,6 +120,7 @@ export default function HomePage() {
           <Image
             src="/homepage.png"
             // src="/hero-image.png"
+            src="/hero-image.png"
             alt="hero"
             height={720}
             width={1400}
@@ -132,7 +133,6 @@ export default function HomePage() {
       {/* 3 Steps Section */}
       <section className="relative z-20 flex flex-col items-center justify-center w-full py-16 bg-transparent">
         <div className="mb-5 text-center text-2xl font-mono font-bold text-red-500 tracking-widest">HOW IT WORKS</div>
-        <div className="mb-2 text-center text-sm font-mono text-green-500 tracking-widest">HOW IT WORKS</div>
         <h2 className="text-3xl sm:text-5xl font-bold text-white dark:text-white mb-12 text-center">Just 3 steps to get started</h2>
         <div className="w-[90%] lg:w-[75%] mx-auto grid grid-col-1 lg:grid-cols-3 gap-10">
           {/* Step 1 */}

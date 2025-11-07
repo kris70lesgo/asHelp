@@ -10,6 +10,9 @@ interface NavbarDemoProps {
   searchQuery?: string;
   setSearchQuery?: (query: string) => void;
 }
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export function NavbarDemo({ searchQuery = "", setSearchQuery }: NavbarDemoProps) {
   const navItems = [
@@ -86,6 +89,21 @@ export function NavbarDemo({ searchQuery = "", setSearchQuery }: NavbarDemoProps
               Logo
             </Link>
           </div>
+      <div className="relative max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+        
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image 
+              src="/logo.png" 
+              alt="AsHelp Logo" 
+              width={24} 
+              height={24}
+              className="rounded-md"
+            />
+            <span className="text-white text-2xl font-bold">AsHelp</span>
+          </Link>
+        </div>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-8 text-base font-medium text-white/90">

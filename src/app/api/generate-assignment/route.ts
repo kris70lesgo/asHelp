@@ -106,59 +106,6 @@ export async function POST(req: NextRequest) {
     const errorMessage = errorObj.message?.includes('limit') || errorObj.message?.includes('quota')
       ? 'Your limit for today has exceeded. Please try again tomorrow.'
       : errorObj.message || 'Assignment generation failed';
-    ${includeImages ? `Also suggest 1 relevant image search term that would enhance this assignment. Use the main topic "${topic}" as the search term unless a more specific term would be better. Add this term as a JSON array in an HTML comment at the very end: <!-- ["term1"] -->` : ''}
-    
-    Format the response as structured HTML with proper headings, paragraphs, and formatting.`;
-
-    const result = await model.generateContent(prompt);
-    
-    if (!result.response) {
-      throw new Error('Your limit for today has exceeded. Please try again tomorrow.');
-    }
-    
-    let content = result.response.text();
-    
-    // Extract image suggestions and fetch images
-    if (includeImages) {
-      const imageTermsMatch = content.match(/<!--\s*\[([^\]]+)\]\s*-->/);
-      if (imageTermsMatch) {
-        try {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const imageTerms = JSON.parse(`[${imageTermsMatch[1]}]`);
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const images = [];
-          
-          // Use user's image query, or topic as fallback
-          const searchTerm = imageQuery || topic;
-          const image = await fetchRelevantImage(searchTerm);
-          if (image) {
-            // Find the first heading after introduction to inject image
-            const headingMatch = content.match(/(<h[2-6][^>]*>)/i);
-            if (headingMatch) {
-              const imageHtml = `
-<div class="image-container" style="margin: 20px 0; text-align: center;">
-  <img src="${image.url}" alt="${image.alt}" style="max-width: 100%; height: auto; border-radius: 8px;" data-download-url="${image.downloadUrl}" />
-</div>
-`;
-              // Insert image before the first main heading, preserving the original heading tag
-              content = content.replace(headingMatch[1], imageHtml + headingMatch[1]);
-            }
-          }
-          
-          // Remove the image suggestions comment
-          content = content.replace(/<!--\s*\[[\s\S]*?\]\s*-->/, '');
-        } catch (e) {
-          console.error('Failed to process image suggestions:', e);
-        }
-      }
-    }
-
-    return NextResponse.json({ content, topic, subject });
-  } catch (error: unknown) {
-    const err = error as Error;
-    const errorMessage = err.message?.includes('limit') || err.message?.includes('quota') || err.message?.includes('exceeded')
-      ? 'Your limit for today has exceeded. Please try again tomorrow.'
-      : err.message || 'Assignment generation failed';
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

@@ -79,8 +79,7 @@ Please provide a helpful response about the assignment. If the user is asking fo
   } catch (error: unknown) {
     console.error('Chat error:', error);
     return NextResponse.json({ 
-      error: error instanceof Error ? error.message : 'Failed to process chat request' 
-      error: (error as Error).message || 'Failed to process chat request' 
+      error: error instanceof Error ? error.message : 'Failed to process chat request'
     }, { status: 500 });
   }
 }

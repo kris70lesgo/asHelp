@@ -63,6 +63,16 @@ export default function Footer() {
               />
               <span className="text-xl sm:text-2xl font-bold text-white">AsHelp</span>
             </div>
+             <div className="flex items-center mb-4">
+               <img
+                 src="/logo.png"
+                 alt="AsHelp Logo"
+                 width={24}
+                 height={24}
+                 className="mr-3 rounded-md"
+               />
+               <span className="text-xl sm:text-2xl font-bold text-white">AsHelp</span>
+             </div>
             <p className="text-gray-400 text-sm mb-6 max-w-xs">
               Get professional assignment writing services from verified experts. 
               100% AI-free, plagiarism-free content delivered on time.
