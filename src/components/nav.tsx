@@ -12,12 +12,18 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState, useEffect } from "react";
 import { GitHubStarsButton } from '@/components/animate-ui/buttons/github-stars';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabaseclient";
 import type { User } from '@supabase/supabase-js';
 import Link from "next/link";
+import { Search, X } from 'lucide-react';
 
-export function NavbarDemo() {
+interface NavbarDemoProps {
+  searchQuery?: string;
+  setSearchQuery?: (query: string) => void;
+}
+
+export function NavbarDemo({ searchQuery = "", setSearchQuery }: NavbarDemoProps) {
   const navItems = [
     {
       name: "Features",
@@ -38,8 +44,13 @@ export function NavbarDemo() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Show search only on dashboard page
+  const showSearch = pathname === '/dashboard' && setSearchQuery;
 
   useEffect(() => {
     if (!supabase) return;
@@ -49,14 +60,21 @@ export function NavbarDemo() {
       setUser(user);
     };
     getUser();
-    // Listen for auth state changes
+
     const { data: listener } = supabase!.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
+    
     return () => {
       listener?.subscription.unsubscribe();
     };
   }, []);
+
+  const clearSearch = () => {
+    if (setSearchQuery) {
+      setSearchQuery("");
+    }
+  };
 
   return (
     <div className="relative w-full">
@@ -67,10 +85,42 @@ export function NavbarDemo() {
           <div className="flex items-center justify-center flex-1">
             <NavItems items={navItems} />
           </div>
+
+          {/* Desktop Search - Only on Dashboard */}
+          {showSearch && (
+            <div className="hidden md:flex items-center mr-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search projects..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-64 px-4 py-2 pl-10 bg-white/5 backdrop-blur-md border border-white/10 
+                             rounded-full text-white placeholder-white/40 
+                             focus:outline-none focus:border-white/30 focus:bg-white/5
+                             transition-all duration-200"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 
+                               text-white/40 hover:text-white transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="flex items-center gap-4">
             <GitHubStarsButton username="kris70lesgo" repo="s1" />
             {user === null && (
-              <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>Login</NavbarButton>
+              <NavbarButton variant="secondary" onClick={() => router.push('/sign')}>
+                Login
+              </NavbarButton>
             )}
           </div>
         </NavBody>
@@ -79,11 +129,52 @@ export function NavbarDemo() {
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <div className="flex items-center gap-2">
+              {/* Mobile Search Toggle - Only on Dashboard */}
+              {showSearch && (
+                <button
+                  onClick={() => setShowMobileSearch(!showMobileSearch)}
+                  className="text-white/90 hover:text-white transition-colors md:hidden"
+                  aria-label="Toggle search"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+              )}
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
+
+          {/* Mobile Search Bar */}
+          {showMobileSearch && showSearch && (
+            <div className="px-4 py-3 border-t border-white/10 md:hidden">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search projects..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-4 py-3 pl-10 bg-white/5 backdrop-blur-sm border border-white/10 
+                             rounded-lg text-white placeholder-white/40 
+                             focus:outline-none focus:border-white/30 focus:bg-white/5
+                             transition-all"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 
+                               text-white/40 hover:text-white transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
 
           <MobileNavMenu
             isOpen={isMobileMenuOpen}
@@ -113,9 +204,6 @@ export function NavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-     
-
-      {/* Navbar */}
     </div>
   );
 }

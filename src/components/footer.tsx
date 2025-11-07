@@ -12,7 +12,6 @@ export default function Footer() {
     if (email) {
       setIsSubscribed(true);
       setEmail('');
-      // Here you would typically send the email to your backend
       setTimeout(() => setIsSubscribed(false), 3000);
     }
   };
@@ -47,15 +46,23 @@ export default function Footer() {
 
   return (
     <footer className="relative w-full bg-slate-900/95 backdrop-blur-sm border-t border-gray-800 z-30">
-      {/* Aurora effect overlay */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 animate-pulse"></div>
       </div>
       
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* Logo and Info Section */}
           <div className="sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center mb-4">
+              <img
+                src="https://assets.aceternity.com/logo-dark.png"
+                alt="AsHelp Logo"
+                width={40}
+                height={40}
+                className="mr-3"
+              />
+              <span className="text-xl sm:text-2xl font-bold text-white">AsHelp</span>
+            </div>
              <div className="flex items-center mb-4">
                <img
                  src="/logo.png"
@@ -71,7 +78,6 @@ export default function Footer() {
               100% AI-free, plagiarism-free content delivered on time.
             </p>
             
-            {/* Newsletter Subscription */}
             <div className="space-y-3">
               <h3 className="text-white font-semibold text-sm">Stay Updated</h3>
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -84,7 +90,6 @@ export default function Footer() {
                     placeholder="Enter your email"
                     className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                     required
-                    suppressHydrationWarning
                   />
                 </div>
                 <button
@@ -101,7 +106,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links Section */}
           <div className="lg:col-span-1 pl-4 lg:pl-6">
             <h3 className="text-white font-semibold text-base sm:text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3">
@@ -118,7 +122,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Help Section */}
           <div className="lg:col-span-1">
             <h3 className="text-white font-semibold text-base sm:text-lg mb-4">Help</h3>
             <ul className="space-y-2 sm:space-y-3">
@@ -134,8 +137,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Support & Social Section */}
+          
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="text-white font-semibold text-base sm:text-lg mb-4">Support</h3>
             <ul className="space-y-2 sm:space-y-3 mb-6">
@@ -151,7 +153,6 @@ export default function Footer() {
               ))}
             </ul>
 
-            {/* Social Media Icons */}
             <div className="space-y-3">
               <h4 className="text-white font-medium text-sm">Follow Us</h4>
               <div className="flex flex-wrap gap-3 sm:gap-4">
@@ -175,18 +176,17 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright Section */}
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 text-center sm:text-left">
             <div className="text-gray-400 text-xs sm:text-sm">
               Copyright &copy; {new Date().getFullYear()} AsHelp. All rights reserved.
             </div>
             <div className="text-gray-400 text-xs sm:text-sm">
-              Made with ❤️ for students worldwide
+              Made with ❤ for students worldwide
             </div>
           </div>
         </div>
       </div>
     </footer>
-  );
+  );
 }

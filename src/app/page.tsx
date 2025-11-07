@@ -118,6 +118,8 @@ export default function HomePage() {
           }
         >
           <Image
+            src="/homepage.png"
+            // src="/hero-image.png"
             src="/hero-image.png"
             alt="hero"
             height={720}
