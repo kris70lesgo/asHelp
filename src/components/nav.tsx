@@ -49,10 +49,7 @@ export function NavbarDemo({ searchQuery = "", setSearchQuery }: NavbarDemoProps
   const router = useRouter();
   const pathname = usePathname();
 
-  // Only show navbar if NOT on homepage or landing page
-  const shouldShowNavbar = pathname !== '/' && pathname !== '/home';
-
-  // Only show search on dashboard page
+  // Show search only on dashboard page
   const showSearch = pathname === '/dashboard' && setSearchQuery;
 
   useEffect(() => {
@@ -78,11 +75,6 @@ export function NavbarDemo({ searchQuery = "", setSearchQuery }: NavbarDemoProps
       setSearchQuery("");
     }
   };
-
-  // Don't render navbar on homepage
-  if (!shouldShowNavbar) {
-    return null;
-  }
 
   return (
     <div className="relative w-full">
