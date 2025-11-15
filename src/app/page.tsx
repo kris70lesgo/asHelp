@@ -118,6 +118,7 @@ export default function HomePage() {
           }
         >
           <Image
+            src="/img1.png"       /*Image, "linear.webp" is missing, added logo.png temporarily*/
             src="/hero-image.png"
             alt="hero"
             height={720}
