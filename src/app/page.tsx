@@ -83,12 +83,12 @@ export default function HomePage() {
           </button>
           {/* Heading + Flip Row */}
           <div className="flex flex-row flex-wrap items-center justify-center gap-1 w-full">
-            <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-semibold whitespace-nowrap">
+            <h1 className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl font-sans text-white font-bold whitespace-nowrap">
               Want help in
             </h1>
             <ContainerTextFlip
               words={["Projects", "assignments", "Termwork", "PPT"]}
-              className="text-lg xs:text-xl sm:text-2xl md:text-4xl ml-1 whitespace-nowrap"
+              className="text-2xl xs:text-4xl sm:text-6xl md:text-7xl ml-1 whitespace-nowrap"
             />
           </div>
           {/* Description Row */}
